@@ -495,7 +495,7 @@ const FIND_KEYS = {
   "arc/years": "yahoo years coe support",
   "viking/map": "viking cruises sailing occupancy cabin architect jd senior bi data architect " + FIND_JD,
   "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
-  "pbi/aml": "aml ofac kyc sar bank of hope fdic power bi python bsa examiner dax time intelligence trend variance booking curve hospitality star schema tabular editor xmla paginated",
+  "pbi/aml": "aml ofac kyc sar edd bsa bank of hope fdic power bi python pyspark power query dataflows m language examiner audit pixel-perfect paginated report builder bursting power automate dax time intelligence trend variance false positive clearance velocity tabular editor xmla ssms partitions vertipaq oom fabric capacity calculation groups dax studio booking curve hospitality star schema",
   "pbi/coe": "finance power bi windows sme directquery databricks fabric semantic model live",
   "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
   "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
@@ -615,7 +615,7 @@ function careerGraph() {
       tip:"Usage, churn, acquisition, campaign ROI. Tableau for product and marketing. Looker POC to test funnel as one truth. Engineering moved Redshift → Snowflake with Airflow. I named the grain they had to land."}),
     cgRow({yr:"2019–21", goP:"pbi", goS:"aml", cls:"aml", left:"73.7", width:"5.2", lab:"Bank of Hope · AML",
       tipH:"Dec 2019 – Mar 2021 · Bank of Hope · Los Angeles",
-      tip:"BSA / AML / OFAC at an FDIC-insured bank. Sit with the business. Prototype in Python and Power Query. Warehouse team lands conformed dims. Certified Power BI for KYC, SAR, OFAC, board packs examiners can defend."}),
+      tip:"BSA / AML / OFAC. Unannounced federal exams. Python + Power Query / Dataflows when central IT was too slow. XMLA partitions when the model ran out of memory. Pixel-perfect paginated PDFs for the examiner binder."}),
     cgRow({yr:"2021–26", goP:"migrate", goS:"onprem", cls:"yh", left:"78.9", width:"21.1", lab:"Yahoo BI COE", inBar:true,
       tipH:"Apr 2021 – now · Yahoo BI COE",
       tip:"Small COE, whole org. Tableau, Looker, instance by business need — stand up, hand off, or stay in support. Certified models. Semantic first, then conversation. Production for the customer, not a demo."})
@@ -660,7 +660,7 @@ const COPY = {
         <button type="button" data-go-p="foundation" data-go-s="bw"><div class="n">2016–17</div><b>Bridgewater</b><span>Westport. Grand Central metrics. Dot Collector Tableau — Principles 360, mock data first. Interworks left; Cognizant took it.</span></button>
         <button type="button" data-go-p="tableau-early" data-go-s="wwe"><div class="n">2018</div><b>WWE</b><span>Stamford. Tableau COE. Cognos stayed with the India team — I took requirements and moved the reports to Tableau.</span></button>
         <button type="button" data-go-p="tableau-early" data-go-s="warner"><div class="n">2018–19</div><b>Warner DCU</b><span>Churn, usage, campaign ROI in Tableau. Reported to Terrence Chui. Warehouse was moving Redshift → Snowflake — I specified the grain, I did not run Airflow.</span></button>
-        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Power BI · AML</b><span>Bank of Hope. KYC, SAR, OFAC, exam packs. Python locally, then warehouse, then certified Power BI.</span></button>
+        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Power BI · AML</b><span>Bank of Hope. OFAC / KYC / EDD. XMLA when refresh died. Pixel-perfect paginated packs for FDIC exams.</span></button>
         <button type="button" data-go-p="migrate" data-go-s="onprem"><div class="n">2021–23</div><b>Migrate</b><span>On-prem → cloud. Disparate BI folded into six Looker instances by business need. Tableau Server → Cloud.</span></button>
         <button type="button" data-go-p="looker" data-go-s="hub"><div class="n">2023–25</div><b>Semantic + self-serve</b><span>One hub owns the semantic layer. Spokes remote-import it, then extend. Local KPIs live in the dependent repo. We ran this in production.</span></button>
         <button type="button" data-go-p="ai" data-go-s="skills"><div class="n">2025–26</div><b>How we use AI</b><span>Finance: revenue and close in hours, not weeks. Skills in git. MCP toward agentic — human still signs the number.</span></button>
@@ -704,7 +704,7 @@ const COPY = {
       <div class="hero"><h2>Power BI + Databricks is not a new language for me.</h2></div>
       ${say("I already connected Power BI to a Databricks SQL warehouse on a lakehouse POC. Genie would sit on the same certified tables.")}
       ${cards([
-        {h:"Power BI muscle", html:"<ul><li>Semantic models, relationships, hidden keys</li><li>Power Query / M, Dataflows</li><li>DAX time intelligence and variance</li><li>Tabular Editor, DAX Studio, XMLA / SSMS partitions</li><li>Paginated reports when audit needs a page</li></ul>"},
+        {h:"Power BI muscle", html:"<ul><li>Semantic models, star, calculation groups (Tabular Editor)</li><li>Power Query / M, Dataflows</li><li>DAX time intelligence, variance, OFAC MIS</li><li>XMLA + SSMS partitions when VertiPaq ran out of memory</li><li>Pixel-perfect paginated PDFs (Report Builder) + bursting</li></ul>"},
         {h:"Databricks muscle", html:"<ul><li>Medallion POC from a legacy MySQL store</li><li>CTE-based SQL into Delta</li><li>SQL warehouse as the consumer for Power BI and Tableau</li><li>Genie = certified objects + instructions — same loop I run on MCP</li></ul>", p:true}
       ])}`
   },
@@ -770,26 +770,30 @@ const COPY = {
   },
   pbi: {
     aml: () => `
-      <div class="hero"><h2>2019–21 · Bank of Hope · Power BI for AML / OFAC</h2>
-      <p>An FDIC-insured bank lives in exam season. I sat on the business side of BSA / AML — not in the warehouse team — and made reporting fast enough that KYC, SAR, OFAC, and board packs were the same certified file the examiner could open.</p></div>
-      ${say("I prototyped on a laptop. IT landed the warehouse. Analysts and VPs pulled one certified dataset. A private Excel copy is how you fail an exam.")}
+      <div class="hero"><h2>2019–21 · Bank of Hope · BSA / AML / OFAC</h2>
+      <p>The compliance unit screens the world: sanctions (OFAC), who the customer is (KYC / EDD). An FDIC examiner can walk in unannounced. The number in the binder has to match the number on the screen. A private Excel copy is how you fail.</p></div>
+      ${say("I sat on the business side, not in central IT. Their warehouse queue was too slow for exam week. I built the reporting path the unit could defend — four unannounced federal exams in one year. Branch expansion could proceed.")}
       <table class="art">
         <thead><tr><th>What the exam asks</th><th>What I had to show</th></tr></thead>
         <tbody>
-          <tr><td>KYC / CIP</td><td>Who is this customer. ID, address, beneficial owner. Completeness, not a story.</td></tr>
-          <tr><td>OFAC / sanctions</td><td>Screened against Treasury SDN (and the other lists we ingested). Hit vs false positive. Time to clear.</td></tr>
-          <tr><td>SAR / CTR</td><td>What we filed, what we did not, why. Counts by period an examiner can re-run.</td></tr>
-          <tr><td>Board / independent test</td><td>Risk, backlog, aging. Paginated pages when the room wants a paper trail.</td></tr>
+          <tr><td>KYC / CIP / EDD</td><td>Who is this customer. ID, address, beneficial owner. Completeness, not a story.</td></tr>
+          <tr><td>OFAC / sanctions</td><td>Screened against Treasury SDN. Hit vs false positive. Time to clear. Blocked wires.</td></tr>
+          <tr><td>SAR / CTR</td><td>What we filed, what we did not, why. Counts an examiner can re-run.</td></tr>
+          <tr><td>The binder</td><td>Pixel-perfect paginated PDFs — page numbers, headers, same layout every print. Not a scrolled dashboard.</td></tr>
         </tbody>
       </table>
       ${cards([
-        {h:"Source files I had to reconcile", html:"<ul><li>Treasury OFAC SDN (and related sanctions lists)</li><li>Core banking extracts — deposits, loans, customer master</li><li>Wire / ACH / SWIFT activity</li><li>CIP / KYC onboarding files</li><li>SAR / case-management extracts</li></ul>"},
-        {h:"How the number got honest", html:"<ul><li>Python locally — prep messy extracts, profile the customer, flag collisions</li><li>Power Query / M — shape what Power BI can see</li><li>Counter-work with warehouse IT — conformed dims, star schema, certified datasets</li><li>Power BI + Tabular Editor + DAX — time, variance, clearance. XMLA when refresh died</li><li>Paginated reports for the exam binder</li></ul>", p:true}
+        {h:"When central IT was too slow", html:"<ul><li>Python / PySpark on messy transaction logs</li><li>Power Query (M) and Dataflows to cleanse, shape, fuzzy-match OFAC</li><li>Star schema + certified semantic model — one file VPs and examiners pull</li><li>IT still owned the long-term warehouse. I did not wait for it to pass the exam</li></ul>"},
+        {h:"Why XMLA + SSMS partitions", html:"<p>Multi-year logs into one import. VertiPaq ran out of memory. Desktop refresh hit five hours and died. The Power BI UI processes the whole model. XMLA is the back door: SSMS talks to the Premium / Fabric workspace like Analysis Services. I cut the fact by date. Process last month. History stays. Capacity does not fall over in the exam room.</p>", p:true}
       ])}
       ${cards([
-        {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. If entity mapping is wrong, you double-count risk or you miss the customer. I profiled locally, named the grain, then IT landed the key the VPs could pull.</p>"},
-        {h:"Same math Viking needs", html:"<p>How many cases cleared this week vs last year is the same shape as how many cabins are sold 90 days before sail vs last year’s sailing. I already write that when someone can challenge the number.</p>", p:true}
-      ])}`,
+        {h:"Tabular Editor + DAX Studio", html:"<ul><li>Star. Hidden keys. Calculation groups so variance is not twenty copy-paste measures</li><li>VertiPaq Analyzer — what is eating memory before the next refresh</li><li>DAX: time intelligence, evaluation context, false-positive rate, clearance velocity, blocked transactions</li></ul>"},
+        {h:"Pixel-perfect + bursting", html:"<p>The word is <b>pixel-perfect</b>: every box stays put on the printed page. Power BI Report Builder (paginated). Power Automate burst each region’s KYC / EDD pack to the officer who owns that slice — row-level, not a zip of the whole bank.</p>", p:true}
+      ])}
+      ${cards([
+        {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. Wrong entity mapping = double-count risk or miss the customer. I profiled locally, named the grain, then the certified model held it.</p>"},
+        {h:"Same math Viking needs", html:"<p>Clearance this week vs last year is the same shape as cabins sold 90 days out vs last year’s sailing. Fabric capacity at Viking is the same problem as VertiPaq OOM at the bank: do not rebuild seven years every night.</p>", p:true}
+      ])}`
     coe: () => `
       <div class="hero"><h2>COE · Power BI SME for Finance on Windows.</h2>
       <p>The estate was Google-centric. Finance still needed Power BI. Semantic models, M, live / DirectQuery.</p></div>
