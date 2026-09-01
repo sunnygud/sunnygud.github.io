@@ -455,7 +455,7 @@ const TABS = {
   viking:     [["map","The map"],["pbi","Power BI + Databricks"]],
   foundation: [["work","The path"],["bw","Bridgewater"]],
   "tableau-early": [["wwe","WWE"],["warner","Warner DCU"]],
-  pbi:        [["aml","AML / OFAC"],["coe","Finance SME"]],
+  pbi:        [["aml","AML / OFAC"]],
   migrate:    [["onprem","On-prem → cloud"],["six","Why six"]],
   looker:     [["did","What I did"],["fin","Finance instance"],["hub","Hub and spoke"],["rls","RLS & trees"],["viz","Users build viz"]],
   tableau:    [["did","What I did"],["gov","Governance"]],
@@ -476,7 +476,7 @@ const FIND_WHY = {
   "migrate/six": "Why Finance is its own Looker instance.",
   "oracle/mods": "Fusion / Planning MCP. Same module names as Finance Looker.",
   "ai/skills": "Looker × Tableau revenue and close.",
-  "pbi/coe": "Power BI SME for Finance — earlier chapter.",
+  "pbi/aml": "AML / OFAC. Bank of Hope.",
   "tableau/gov": "Finance also lives in Tableau. Same grain check.",
   "work/gws": "Google tools. Not Finance reporting.",
   "work/sec": "Security bugs on the org spine.",
@@ -496,7 +496,6 @@ const FIND_KEYS = {
   "viking/map": "viking cruises sailing occupancy cabin architect jd senior bi data architect " + FIND_JD,
   "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
   "pbi/aml": "aml ofac kyc sar edd bsa bank of hope fdic power bi python pyspark power query dataflows m language examiner audit pixel-perfect paginated report builder bursting power automate dax time intelligence trend variance false positive clearance velocity tabular editor xmla ssms partitions vertipaq oom fabric capacity calculation groups dax studio booking curve hospitality star schema",
-  "pbi/coe": "finance power bi windows sme directquery databricks fabric semantic model live",
   "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
   "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
   "looker/fin": "finance microstrategy mstr gl ap ar erp oracle module warehouse looker instance tax procurement revenue t&e uat accounting financial data",
@@ -513,7 +512,6 @@ const FIND_KEYS = {
   "migrate/onprem": "finance migrate microstrategy cutover cloud on-prem tableau server hr sports end-to-end ingest etl data ingestion",
   "work/gws": "workspace gmail drive meet chat calendar forms apps script google adoption sites sheets slides voice data ingestion api",
   "work/desk": "service desk gsd assets joiner leaver servicenow jira data ingestion api",
-  "pbi/coe": "finance power bi windows sme directquery databricks fabric semantic model live medallion coe",
   "ai/talk": "chat genie certified explore yaml natural language conversational analytics verified answers golden questions instructions example sql",
   "ai/agent": "agentic mcp human signs conversation api microsoft teams embed flow of work",
   "ai/skills": "finance revenue tableau looker close consolidation revenue management bookings demand",
@@ -793,12 +791,7 @@ const COPY = {
       ${cards([
         {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. Wrong entity mapping = double-count risk or miss the customer. I profiled locally, named the grain, then the certified model held it.</p>"},
         {h:"Same math Viking needs", html:"<p>Clearance this week vs last year is the same shape as cabins sold 90 days out vs last year’s sailing. Fabric capacity at Viking is the same problem as VertiPaq OOM at the bank: do not rebuild seven years every night.</p>", p:true}
-      ])}`,
-    coe: () => `
-      <div class="hero"><h2>COE · Power BI SME for Finance on Windows.</h2>
-      <p>The estate was Google-centric. Finance still needed Power BI. Semantic models, M, live / DirectQuery.</p></div>
-      ${say("I am the person who can sit with FP&A on a Windows laptop and leave a model they can keep.")}
-      ${cards([{h:"Lakehouse POC", html:"<p>Power BI on a Databricks SQL warehouse after Bronze–Silver–Gold. Same objects a Genie space would see.</p>", p:true}])}`
+      ])}`
   },
   migrate: {
     onprem: () => `
@@ -1610,7 +1603,9 @@ function findJump(i) {
 
 function renderTabs() {
   const tabs = TABS[proj];
-  document.getElementById("tabs").innerHTML = tabs.map(([id, label]) =>
+  const el = document.getElementById("tabs");
+  if (tabs.length < 2) { el.innerHTML = ""; return; }
+  el.innerHTML = tabs.map(([id, label]) =>
     "<button type=\"button\" data-skill=\"" + id + "\" class=\"" + (id===skill ? "active" : "") + "\">" + label + "</button>"
   ).join("");
 }
