@@ -1,3 +1,3 @@
-# Sunil Gudipati — Career 360
+# Career 360
 
-**https://sunnygud.github.io/**
+https://sunnygud.github.io/
