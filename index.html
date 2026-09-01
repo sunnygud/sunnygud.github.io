@@ -30,7 +30,11 @@ aside.sidebar {
   background: #6001D2; color: #fff; border-radius: 8px; padding: 10px 12px;
   font-weight: 800; font-size: 13px; letter-spacing: .02em;
 }
-.logo-block h1 { font-size: 16px; font-weight: 800; margin: 12px 0 4px; letter-spacing: -.02em; }
+.logo-block .who { font-size: 16px; font-weight: 800; margin: 12px 0 2px; letter-spacing: -.02em; }
+.logo-block h1 {
+  font-size: 12px; font-weight: 600; color: var(--mid); margin: 0 0 8px;
+  letter-spacing: 0; line-height: 1.3;
+}
 .logo-block .pill {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .08em;
   text-transform: uppercase; background: var(--p-gl); color: var(--p);
@@ -87,6 +91,51 @@ nav.top-tabs button.active::before {
   font: 600 11px Inter; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border);
   background: #fff; color: var(--ink); text-decoration: none; cursor: pointer;
 }
+.icon-btn {
+  width: 34px; height: 34px; padding: 0 !important;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border) !important; border-bottom: 1px solid var(--border) !important;
+  border-radius: 8px !important; background: #fff !important; color: var(--ink);
+  margin: 0 0 8px !important;
+}
+.icon-btn::before { display: none !important; }
+nav.top-tabs .icon-btn { font-size: 0; color: var(--ink); }
+.icon-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn:hover { color: var(--p); border-color: var(--p); }
+#find-open { letter-spacing: 0; }
+#find {
+  display: none; position: fixed; inset: 0; z-index: 80;
+}
+#find.on { display: block; }
+.find-scrim { position: absolute; inset: 0; background: rgba(35,42,49,.28); }
+.find-panel {
+  position: absolute; top: 56px; right: 18px; width: min(420px, calc(100vw - 36px));
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(35,42,49,.16); padding: 12px; max-height: min(70vh, 560px);
+  display: flex; flex-direction: column;
+}
+.find-panel input {
+  width: 100%; font: 600 14px Inter; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 8px; color: var(--ink); outline: none;
+}
+.find-panel input:focus { border-color: var(--p); box-shadow: 0 0 0 3px var(--p-gl); }
+.find-hint { font-size: 11px; color: var(--dim); margin: 8px 0 10px; }
+.find-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.find-chips button {
+  font: 600 11px Inter; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--mid); cursor: pointer;
+}
+.find-chips button:hover { border-color: var(--p); color: var(--p); }
+#find-list { overflow-y: auto; flex: 1; }
+.find-hit {
+  display: block; width: 100%; text-align: left; background: transparent; border: 0;
+  border-radius: 8px; padding: 8px 10px; cursor: pointer; font: inherit; margin-bottom: 2px;
+}
+.find-hit:hover, .find-hit.on { background: var(--p-gl); }
+.find-hit .ch { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--p); }
+.find-hit .ti { display: block; font-size: 13.5px; font-weight: 700; color: var(--ink); margin: 2px 0 2px; }
+.find-hit .wh { font-size: 12px; color: var(--mid); line-height: 1.35; }
+.find-empty { font-size: 13px; color: var(--dim); padding: 12px 8px; }
 .crumb {
   padding: 8px 22px; font-size: 11px; color: var(--dim); background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -112,6 +161,11 @@ nav.top-tabs button.active::before {
 .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
 .card p, .card li { font-size: 13.5px; color: var(--mid); line-height: 1.42; }
 .card.p { background: #F7F2FF; border-color: #E4D4FA; }
+button.inline-go {
+  display: inline; background: none; border: 0; padding: 0; font: inherit;
+  color: var(--p); font-weight: 700; cursor: pointer; text-decoration: underline;
+  text-underline-offset: 2px;
+}
 ul { list-style: none; }
 ul li { position: relative; padding-left: 14px; margin: 5px 0; }
 ul li:before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--p); }
@@ -298,9 +352,11 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
 }
 .cg-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 11px; color: var(--mid); }
 .cg-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.cg-hover { font-size: 12px; font-style: italic; font-weight: 500; color: var(--p-lt); margin: 10px 0 0; }
+.cg-hover b { font-style: italic; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 
 @media print {
-  aside.sidebar, nav.top-tabs, .top-meta, .crumb { display: none !important; }
+  aside.sidebar, nav.top-tabs, .top-meta, .crumb, #find { display: none !important; }
   .shell { display: block; }
   .content { max-width: none; }
 }
@@ -316,6 +372,7 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
 <aside class="sidebar">
   <div class="logo-block">
     <div class="brand-pill">CAREER 360</div>
+    <p class="who">Sunil Gudipati</p>
     <h1>Senior BI &amp; Data Architect</h1>
     <span class="pill">Oldest → latest</span>
   </div>
@@ -331,23 +388,17 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
   <button class="inst-btn" data-proj="migrate" data-skill="onprem"><span class="dot"></span><span class="name">Migrate</span></button>
   <button class="inst-btn" data-proj="looker" data-skill="did"><span class="dot"></span><span class="name">Looker</span></button>
   <button class="inst-btn" data-proj="tableau" data-skill="did"><span class="dot"></span><span class="name">Tableau</span></button>
-  <button class="inst-btn" data-proj="enable" data-skill="small"><span class="dot"></span><span class="name">Self-serve</span></button>
+  <button class="inst-btn" data-proj="enable" data-skill="iiq"><span class="dot"></span><span class="name">Self-serve</span></button>
   <button class="inst-btn" data-proj="semantic" data-skill="hub"><span class="dot"></span><span class="name">Semantic layer</span></button>
-  <button class="inst-btn" data-proj="pipeline" data-skill="pull"><span class="dot"></span><span class="name">Estate MCP</span></button>
-  <button class="inst-btn" data-proj="pipeline" data-skill="cost"><span class="dot"></span><span class="name">AI cost KPIs</span></button>
-  <button class="inst-btn" data-proj="pipeline" data-skill="rls"><span class="dot"></span><span class="name">RLS &amp; trees</span></button>
-  <button class="inst-btn" data-proj="pipeline" data-skill="gws"><span class="dot"></span><span class="name">Google Workspace</span></button>
+  <button class="inst-btn" data-proj="pipeline" data-skill="pull"><span class="dot"></span><span class="name">Estate 360</span></button>
+  <button class="inst-btn" data-proj="work" data-skill="gws"><span class="dot"></span><span class="name">Workplace data</span></button>
   <button class="inst-btn" data-proj="execute" data-skill="mind"><span class="dot"></span><span class="name">How we work</span></button>
   <button class="inst-btn" data-proj="execute" data-skill="ticket"><span class="dot"></span><span class="name">Tickets &amp; PRs</span></button>
   <button class="inst-btn" data-proj="repos" data-skill="care"><span class="dot"></span><span class="name">Git repos</span></button>
-  <div class="section-label">How I built it</div>
-  <button class="inst-btn" data-proj="arch" data-skill="v1"><span class="dot"></span><span class="name">PKCE local</span></button>
-  <button class="inst-btn" data-proj="arch" data-skill="seq"><span class="dot"></span><span class="name">PKCE sequence</span></button>
-  <button class="inst-btn" data-proj="arch" data-skill="setup"><span class="dot"></span><span class="name">Desktop setup</span></button>
-  <button class="inst-btn" data-proj="arch" data-skill="prod"><span class="dot"></span><span class="name">Production</span></button>
-  <button class="inst-btn" data-proj="arch" data-skill="dock"><span class="dot"></span><span class="name">Docker path</span></button>
+  <div class="section-label">AI · MCP</div>
+  <button class="inst-btn" data-proj="ai" data-skill="scale"><span class="dot"></span><span class="name">How we use AI</span></button>
+  <button class="inst-btn" data-proj="arch" data-skill="v1"><span class="dot"></span><span class="name">MCP path</span></button>
   <button class="inst-btn" data-proj="oracle" data-skill="mods"><span class="dot"></span><span class="name">Oracle modules</span></button>
-  <button class="inst-btn" data-proj="ai" data-skill="payoff"><span class="dot"></span><span class="name">Conversational</span></button>
   <div class="side-foot">
     Left = oldest to latest.
   </div>
@@ -357,22 +408,47 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
   <nav class="top-tabs">
     <div class="tabs-scroll" id="tabs"></div>
     <div class="top-meta">
-      <button type="button" onclick="window.print()">Print view</button>
+      <button type="button" id="find-open" class="icon-btn" aria-label="Find" title="Find (⌘K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button type="button" id="print-open" class="icon-btn" aria-label="Print" title="Print">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>
+      </button>
     </div>
   </nav>
   <div class="crumb">Chapter · <b id="crumb-p">Timeline</b> &nbsp;/&nbsp; · <b id="crumb-s"></b></div>
-  <div class="content" id="stage"></div>
+  <div class="content" id="stage">
+    <p class="lede">Opening the career graph… If this stays, JavaScript did not run.</p>
+  </div>
 </main>
 </div>
 
+<div id="find">
+  <div class="find-scrim" id="find-scrim"></div>
+  <div class="find-panel" role="dialog" aria-label="Find a page">
+    <input id="find-q" type="search" placeholder="Finance, BCP, RLS, Workspace…" autocomplete="off" />
+    <p class="find-hint">⌘K or Ctrl+K · every chapter and tab · not every sentence · Enter jumps · Esc closes</p>
+    <div class="find-chips" id="find-chips"></div>
+    <div id="find-list"></div>
+  </div>
+</div>
+
+<script>
+window.onerror = function (msg, src, line) {
+  var el = document.getElementById("stage");
+  if (el) el.innerHTML = "<div class='lede'><b>Script error</b> — " + msg + " (line " + line + ")</div>";
+};
+</script>
 <script>
 const LABELS = {
-  arc: "Timeline", viking: "Viking fit",
+  arc: "Timeline", viking: "Viking fit", foundation: "Foundation",
+  pbi: "AML · Power BI",
   "tableau-early": "WWE · Warner DCU",
   migrate: "Migrate & 6 instances", looker: "Looker", tableau: "Tableau",
   enable: "Self-serve & train", semantic: "Semantic → viz → talk",
-  oracle: "Oracle modules", ai: "Conversational AI", pipeline: "Estate & AI cost",
-  execute: "Tickets & PRs", arch: "Architecture", repos: "Git repos"
+  oracle: "Oracle modules", ai: "How we use AI", pipeline: "Estate 360",
+  work: "Workplace data",
+  execute: "Tickets & PRs", arch: "MCP path", repos: "Git repos"
 };
 const TABS = {
   arc:        [["graph","Career graph"],["walk","The walk"],["years","Yahoo years"]],
@@ -381,17 +457,103 @@ const TABS = {
   "tableau-early": [["wwe","WWE"],["warner","Warner DCU"]],
   pbi:        [["aml","AML / OFAC"],["coe","Finance SME"]],
   migrate:    [["onprem","On-prem → cloud"],["six","Why six"]],
-  looker:     [["did","What I did"],["viz","Users build viz"]],
+  looker:     [["did","What I did"],["fin","Finance instance"],["hub","Hub and spoke"],["rls","RLS & trees"],["viz","Users build viz"]],
   tableau:    [["did","What I did"],["gov","Governance"]],
-  enable:     [["small","Small team"],["train","Train the org"]],
-  semantic:   [["hub","Hub and spoke"],["ready","Built for conversation"]],
+  enable:     [["iiq","IIQ onboard"],["small","Small team"],["train","Train the org"]],
+  semantic:   [["hub","The contract"]],
   oracle:     [["mods","Modules"],["route","How they route"]],
-  ai:         [["payoff","The payoff"],["skills","Skills"]],
-  pipeline:   [["pull","MCP pulls"],["cost","Org AI cost"],["rls","RLS & hierarchy"],["gws","Google Workspace"]],
+  ai:         [["scale","Scale the team"],["skills","Finance skills"],["agent","Agentic"],["cost","Cheap vs expensive"],["spend","Org AI cost"],["talk","Chat on certified fields"]],
+  pipeline:   [["pull","What the org sees"]],
+  work:       [["gws","Google Workspace"],["desk","Service desk & assets"],["bcp","BCP & change"],["pmo","Jira & PMO"],["sec","Security & compliance"]],
   execute:    [["mind","How we work"],["ticket","Jira + Slack"],["pr","PR loop"],["lookml","LookML git"]],
   arch:       [["v1","PKCE local"],["seq","PKCE sequence"],["setup","Desktop setup"],["prod","Production"],["dock","Docker"]],
   repos:      [["care","Customer care"],["ship","Consensus"]]
 };
+
+const FIND_WHY = {
+  "looker/fin": "Home. MicroStrategy → Looker. Models per Oracle module.",
+  "migrate/onprem": "How we got there. Cutover — not the live model map.",
+  "migrate/six": "Why Finance is its own Looker instance.",
+  "oracle/mods": "Fusion / Planning MCP. Same module names as Finance Looker.",
+  "ai/skills": "Looker × Tableau revenue and close.",
+  "pbi/coe": "Power BI SME for Finance — earlier chapter.",
+  "tableau/gov": "Finance also lives in Tableau. Same grain check.",
+  "work/gws": "Google tools. Not Finance reporting.",
+  "work/sec": "Security bugs on the org spine.",
+  "work/bcp": "BCP and change letters.",
+  "looker/rls": "Who sees which row.",
+  "looker/hub": "Hub-and-spoke LookML.",
+  "pipeline/pull": "Estate inventory. Not RLS.",
+  "enable/iiq": "Who may open the tool.",
+  "semantic/hub": "Certified field. All tools hit it.",
+  "viking/map": "Their posting. Each row is an ask from the JD."
+};
+const FIND_JD = "end-to-end data stack synapse databricks power bi semantic model fabric capacity memory refresh genie unity catalog metric views certified tables natural language conversational analytics self-service bookings demand revenue management operations commercial verified answers example sql instructions business glossary synonyms entity matching conversation api microsoft teams alerts sql python pyspark pandas dax time intelligence trend variance booking curve hospitality star schema snowflake dimensional modeling data contract analytics engineering layered models single source of truth row-level security column masking lineage tags ownership certification permissions ingest etl transformation analytical data platform woodland hills hybrid customer data identity prompt engineering financial accounting";
+const FIND_KEYS = {
+  "arc/graph": "career graph timeline tenure be b.e bachelor engineering bs computer science madras university hover tooltip",
+  "arc/walk": "walk timeline dell vale daimler yahoo",
+  "arc/years": "yahoo years coe support",
+  "viking/map": "viking cruises sailing occupancy cabin architect jd senior bi data architect " + FIND_JD,
+  "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
+  "pbi/aml": "aml ofac kyc sar bank of hope fdic power bi python bsa examiner dax time intelligence trend variance booking curve hospitality star schema tabular editor xmla paginated",
+  "pbi/coe": "finance power bi windows sme directquery databricks fabric semantic model live",
+  "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
+  "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
+  "looker/fin": "finance microstrategy mstr gl ap ar erp oracle module warehouse looker instance tax procurement revenue t&e uat accounting financial data",
+  "semantic/hub": "semantic layer certified field contract looker tableau power bi chat unity catalog metric views single source of truth glossary descriptions synonyms genie bi data",
+  "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold data ingestion",
+  "looker/did": "looker admin modeler office hours platform coe bi",
+  "enable/small": "small team coe scale bi",
+  "enable/train": "train office hours workshop self-service data literacy prompt engineering coe",
+  "arc/years": "yahoo years coe support bi",
+  "execute/mind": "how we work sprint stories points coe bi",
+  "tableau-early/wwe": "wwe stamford tableau coe cognos redshift salesforce datorama clickstream streaming data marketing ads ingest etl informatica",
+  "tableau-early/warner": "warner bros dcu terrence chui churn campaign roi looker poc redshift snowflake airflow salesforce datorama streaming data app events clickstream google analytics ingest",
+  "foundation/work": "be b.e bachelor engineering bs computer science madras 2001 dell vale daimler infosys hyderabad toronto stuttgart ccod call center business objects webi crystal cognos sap bo universe informatica spss r msbi gdc ingest etl sql python end-to-end data ingestion",
+  "migrate/onprem": "finance migrate microstrategy cutover cloud on-prem tableau server hr sports end-to-end ingest etl data ingestion",
+  "work/gws": "workspace gmail drive meet chat calendar forms apps script google adoption sites sheets slides voice data ingestion api",
+  "work/desk": "service desk gsd assets joiner leaver servicenow jira data ingestion api",
+  "pbi/coe": "finance power bi windows sme directquery databricks fabric semantic model live medallion coe",
+  "ai/talk": "chat genie certified explore yaml natural language conversational analytics verified answers golden questions instructions example sql",
+  "ai/agent": "agentic mcp human signs conversation api microsoft teams embed flow of work",
+  "ai/skills": "finance revenue tableau looker close consolidation revenue management bookings demand",
+  "enable/train": "train office hours workshop self-service data literacy prompt engineering",
+  "enable/iiq": "iiq access onboard identity groups saml governance permissions",
+  "oracle/mods": "finance oracle gl ap fusion epm planning supplier clm journals financial accounting data",
+  "foundation/work": "be b.e bachelor engineering bs computer science madras 2001 dell vale daimler infosys hyderabad toronto stuttgart ccod call center business objects webi crystal cognos sap bo universe informatica spss r msbi gdc ingest etl sql python end-to-end",
+  "foundation/bw": "bridgewater westport ray dalio principles grand central tableau informatica sql server rls dot collector prios baseball cards 360 feedback mock data interworks cognizant",
+  "tableau-early/wwe": "wwe stamford tableau coe cognos redshift",
+  "tableau-early/warner": "warner bros dcu terrence chui churn campaign roi looker poc redshift snowflake airflow",
+  "looker/did": "looker admin modeler office hours platform",
+  "looker/viz": "users build visualization self-serve self-service",
+  "tableau/did": "tableau cloud server prep pulse",
+  "tableau/gov": "finance tableau governance extract freshness",
+  "enable/small": "small team coe scale",
+  "oracle/route": "route supplier vendor journal ledger contract plan forecast",
+  "ai/scale": "ai skills cheap expensive genie forward-deployed",
+  "ai/cost": "cheap expensive model tier tokens",
+  "ai/spend": "org ai cost seats overage shelfware license",
+  "migrate/onprem": "finance migrate microstrategy cutover cloud on-prem tableau server hr sports end-to-end ingest etl",
+  "migrate/six": "finance instance six looker domain genie chat explore conversational",
+  "pipeline/pull": "estate footprint stale ghost inventory looker tableau flows",
+  "work/gws": "workspace gmail drive meet chat calendar forms apps script google adoption sites sheets slides voice",
+  "work/desk": "service desk gsd assets joiner leaver servicenow jira",
+  "work/bcp": "bcp change scoring cmr continuity exemption spof tier",
+  "work/pmo": "jira pmo sprint roadmap plans",
+  "work/sec": "security bugs severity servicenow jira legal helpdesk compliance accountability",
+  "execute/mind": "how we work sprint stories points",
+  "execute/ticket": "jira slack looker-xxxx ticket",
+  "execute/pr": "pull request review github",
+  "execute/lookml": "lookml git ide validator no terminal push",
+  "arch/v1": "mcp pkce oauth local",
+  "arch/seq": "pkce sequence",
+  "arch/setup": "desktop setup",
+  "arch/prod": "production fargate",
+  "arch/dock": "docker container",
+  "repos/care": "git repos customer production skills",
+  "repos/ship": "pr merge consensus"
+};
+const FIND_CHIPS = ["semantic layer","data ingestion","medallion","coe","bi","data","streaming data","salesforce"];
 
 function say(t) {
   return `<div class="lede">${t}</div>`;
@@ -431,8 +593,8 @@ function careerGraph() {
   /* Axis: Jan 2001 → Aug 2026. Bar width = tenure. Label sits to the right except Yahoo. */
   const rows = [
     cgRow({yr:"2001–03", goP:"foundation", goS:"work", cls:"grad", left:"1.6", width:"8.6", lab:"B.E. CS · first jobs",
-      tipH:"2001 graduate · first jobs · BI starts Apr 2003",
-      tip:"B.E. Computer Science, Madras University, 2001. Worked after that — nothing to brief. BI starts at Dell in April 2003. No gap. No chapter."}),
+      tipH:"Bachelor of Engineering, Computer Science · 2001",
+      tip:"B.E. is the Indian undergraduate degree — same idea as a U.S. B.S. in Computer Science. Madras University, 2001. First jobs after that are not a BI chapter. BI starts at Dell in April 2003. No gap."}),
     cgRow({yr:"2003–07", goP:"foundation", goS:"work", cls:"dell", left:"8.8", width:"16.9", lab:"Dell · GDC · CCOD",
       tipH:"Apr 2003 – Jul 2007 · Dell International · Hyderabad",
       tip:"Call Center Directory Operations (CCOD). Reusable MIS for ~100 call centers: feedback-agent customer satisfaction, call-center dashboards, HR and team metrics. Business Objects universes + WebI — the semantic layer of that era."}),
@@ -441,19 +603,19 @@ function careerGraph() {
       tip:"Universes, classes, objects — semantic modelling. WebI, Crystal, Voyager cubes. Support management grew into technical project manager: Database + BI teams, onsite and offshore. Incidents, CAB, SLAs. The customer is the mine — production has to hold."}),
     cgRow({yr:"2013–16", goP:"foundation", goS:"work", cls:"ger", left:"48.4", width:"11", lab:"Daimler AG · Stuttgart",
       tipH:"Jun 2013 – Apr 2016 · Daimler AG · Stuttgart",
-      tip:"Technical architect on BI frontend into steady-state. Three towers: Cognos, Business Objects, MSBI (SSRS). IBM SPSS Modeler end-to-end for the data-science team. Conformed dimensions across ERPs. Support management so Sales, Finance, and Manufacturing used one picture."}),
+      tip:"Technical architect on BI frontend into steady-state. Cognos, BO, MSBI. Infosys built SPSS / R predictive models and survey-text metrics. I ran the platform: incident and change, so those models stayed live. Left for the U.S. in April 2016."}),
     cgRow({yr:"2016–17", goP:"foundation", goS:"bw", cls:"bw", left:"59.7", width:"6.5", lab:"Bridgewater · Westport",
-      tipH:"May 2016 – Dec 2017 · Bridgewater Associates · Westport",
-      tip:"Grand Central — firm operating metrics in Tableau. The Principles project: Ray Dalio’s radical transparency, design through development, then to leadership. Took the work when the vendor left. Informatica + SQL Server. RLS so each group saw its slice."}),
+      tipH:"May 2016 – Dec 2017 · Bridgewater Associates · Westport · first U.S. role",
+      tip:"Moved to the U.S. April 2016. Grand Central — firm operating metrics in Tableau. Dot Collector — Tableau of Ray Dalio’s 360 / Principles picture, first on mock data. Interworks started it. Cognizant picked it up when they left. Informatica + SQL Server. RLS so each group saw its slice."}),
     cgRow({yr:"2018", goP:"tableau-early", goS:"wwe", cls:"wwe", left:"66.2", width:"2.9", lab:"WWE · Tableau COE",
       tipH:"Jan – Sep 2018 · WWE · Stamford",
-      tip:"Tableau COE practice: reusable dashboard templates, release gate before production, org landing page, onboarding workshops. Certified SQL / secure views. Governance so Marketing could self-serve without a hero ticket."}),
+      tip:"Tableau COE: templates, release gate, landing, workshops. Cognos legacy sat with the India team. I took requirements and migrated those reports to Tableau. Engineering landed Redshift — I certified the source."}),
     cgRow({yr:"2018–19", goP:"tableau-early", goS:"warner", cls:"warn", left:"69.1", width:"4.9", lab:"Warner Bros · DCU",
       tipH:"Oct 2018 – Dec 2019 · Warner Bros · DCU app · reported to Terrence Chui",
-      tip:"DCU metrics: usage, churn, acquisition, campaign ROI. Tableau for the room. Looker POC to pick the right tool — funnel grain as a single source of truth. Certified sources. The customer is product + marketing living with the numbers."}),
+      tip:"Usage, churn, acquisition, campaign ROI. Tableau for product and marketing. Looker POC to test funnel as one truth. Engineering moved Redshift → Snowflake with Airflow. I named the grain they had to land."}),
     cgRow({yr:"2019–21", goP:"pbi", goS:"aml", cls:"aml", left:"73.7", width:"5.2", lab:"Bank of Hope · AML",
       tipH:"Dec 2019 – Mar 2021 · Bank of Hope · Los Angeles",
-      tip:"BSA / AML / OFAC. Power BI semantic models, M, DAX. Warehouse first — no shadow model. Board-facing anomalies. KYC, sanctions, investigations on one certified picture."}),
+      tip:"BSA / AML / OFAC at an FDIC-insured bank. Sit with the business. Prototype in Python and Power Query. Warehouse team lands conformed dims. Certified Power BI for KYC, SAR, OFAC, board packs examiners can defend."}),
     cgRow({yr:"2021–26", goP:"migrate", goS:"onprem", cls:"yh", left:"78.9", width:"21.1", lab:"Yahoo BI COE", inBar:true,
       tipH:"Apr 2021 – now · Yahoo BI COE",
       tip:"Small COE, whole org. Tableau, Looker, instance by business need — stand up, hand off, or stay in support. Certified models. Semantic first, then conversation. Production for the customer, not a demo."})
@@ -477,6 +639,7 @@ function careerGraph() {
         <span><i style="background:#FFA700"></i>AML</span>
         <span><i style="background:#6001D2"></i>Yahoo</span>
       </div>
+      <p class="cg-hover"><b>Note:</b> Hover a bar for the story.</p>
     </div>`;
 }
 
@@ -485,26 +648,26 @@ const COPY = {
     graph: () => `
       <div class="hero"><h2>Career summary · 2001 → Aug 2026</h2>
       <p>Hover a mark for what shipped. Click it to open the chapter. The colored bar is tenure — names sit to the right so they are not clipped.</p></div>
-      ${kpis([["Graduated","2001 · 25 yrs in work"],["BI since","Apr 2003 · 23+ yrs"],["Germany","Daimler · Jun 13–Apr 16"],["Yahoo","Apr 2021 – now · 5.4 yrs"]])}
+      ${kpis([["Graduated","2001 · 25 yrs in work"],["BI since","Apr 2003 · 23+ yrs"],["USA since","Apr 2016 · 10+ yrs"],["Yahoo","Apr 2021 – now · 5.4 yrs"]])}
       ${careerGraph()}
-      ${say("Graduated 2001. BI from Dell in 2003: unify the data, put it in a tool the business can use, then teach them to run it. Yahoo is the COE chapter — not the first.")}`,
+      ${say("Moved to the U.S. in April 2016 — Westport, then Stamford, Burbank, Los Angeles. Germany is the bar before that. Graduated 2001. BI from Dell in 2003. Yahoo is the COE chapter — not the first.")}`,
     walk: () => `
       <div class="hero"><h2>Oldest to latest. One job getting larger.</h2>
       <p>Unify definitions. Move the stack. Teach the business. Then let them ask in English — on the same certified layer.</p></div>
-      ${say("I spent six years in a small COE covering Looker and Tableau: migrate, consolidate to six instances, certify the semantic layer, train the org, then put conversational AI on that layer.")}
+      ${say("I spent six years in a small COE covering Looker and Tableau: migrate, consolidate to six instances, certify the semantic layer, train the org, then put chat on that layer — with cheap models for paste and expensive models only for grain.")}
       <div class="story">
-        <button type="button" data-go-p="foundation" data-go-s="work"><div class="n">2003–16</div><b>Foundation</b><span>ERP reporting. BO, Cognos, SQL, Informatica. Dell → VALE → Daimler.</span></button>
-        <button type="button" data-go-p="foundation" data-go-s="bw"><div class="n">2016–17</div><b>Bridgewater</b><span>Westport. Grand Central corporate metrics in Tableau. Informatica + SQL Server. RLS.</span></button>
-        <button type="button" data-go-p="tableau-early" data-go-s="wwe"><div class="n">2018</div><b>WWE</b><span>Stamford. Tableau platform + campaign funnels. Self-serve landing and workshops.</span></button>
-        <button type="button" data-go-p="tableau-early" data-go-s="warner"><div class="n">2018–19</div><b>Warner DCU</b><span>Prestige DCU app. Churn and usage in Tableau. Reported to Terrence Chui.</span></button>
-        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Power BI · AML</b><span>Semantic models, M, DAX, XMLA. Warehouse first. No shadow model.</span></button>
+        <button type="button" data-go-p="foundation" data-go-s="work"><div class="n">2003–16</div><b>Foundation</b><span>BO, Cognos, Informatica. Germany: SPSS / R with Infosys — I ran incident and change. Dell → VALE → Daimler.</span></button>
+        <button type="button" data-go-p="foundation" data-go-s="bw"><div class="n">2016–17</div><b>Bridgewater</b><span>Westport. Grand Central metrics. Dot Collector Tableau — Principles 360, mock data first. Interworks left; Cognizant took it.</span></button>
+        <button type="button" data-go-p="tableau-early" data-go-s="wwe"><div class="n">2018</div><b>WWE</b><span>Stamford. Tableau COE. Cognos stayed with the India team — I took requirements and moved the reports to Tableau.</span></button>
+        <button type="button" data-go-p="tableau-early" data-go-s="warner"><div class="n">2018–19</div><b>Warner DCU</b><span>Churn, usage, campaign ROI in Tableau. Reported to Terrence Chui. Warehouse was moving Redshift → Snowflake — I specified the grain, I did not run Airflow.</span></button>
+        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Power BI · AML</b><span>Bank of Hope. KYC, SAR, OFAC, exam packs. Python locally, then warehouse, then certified Power BI.</span></button>
         <button type="button" data-go-p="migrate" data-go-s="onprem"><div class="n">2021–23</div><b>Migrate</b><span>On-prem → cloud. Disparate BI folded into six Looker instances by business need. Tableau Server → Cloud.</span></button>
-        <button type="button" data-go-p="semantic" data-go-s="hub"><div class="n">2023–25</div><b>Semantic + self-serve</b><span>Hub-and-spoke. Users build viz. Office hours. Small team, whole org.</span></button>
-        <button type="button" data-go-p="pipeline" data-go-s="cost"><div class="n">2025–26</div><b>AI cost + conversation</b><span>Vendor feeds → weekly KPIs. RLS on short-id. Skills so Haiku-class models do the paste work. Same certified fields in English.</span></button>
+        <button type="button" data-go-p="looker" data-go-s="hub"><div class="n">2023–25</div><b>Semantic + self-serve</b><span>One hub owns the semantic layer. Spokes remote-import it, then extend. Local KPIs live in the dependent repo. We ran this in production.</span></button>
+        <button type="button" data-go-p="ai" data-go-s="skills"><div class="n">2025–26</div><b>How we use AI</b><span>Finance: revenue and close in hours, not weeks. Skills in git. MCP toward agentic — human still signs the number.</span></button>
       </div>
       ${cards([
         {h:"Looker and Tableau together", html:"<p>I did not pick a winner. I ran both: migrate, onboard, train, certify, then cross-check numbers before anyone briefs a boss.</p>"},
-        {h:"Why conversation came last", html:"<p>You cannot put Genie on a mess. The semantic layer was the investment. AI is the dividend.</p>", p:true}
+        {h:"Why conversation came last", html:"<p>Chat on a mess guesses. Chat on a certified layer is production. I already run that. Cheap tools for the repeat work. Expensive tools only when grain is on the line.</p>", p:true}
       ])}`,
     years: () => `
       <div class="hero"><h2>Six years of COE support — not a side project.</h2></div>
@@ -512,9 +675,9 @@ const COPY = {
         <thead><tr><th>When</th><th>What the org felt</th></tr></thead>
         <tbody>
           <tr><td>2021–23</td><td>On-prem reporting retired. Cloud Looker + Tableau Cloud. Finance AP / AR / GL off a legacy stack onto governed models.</td></tr>
-          <tr><td>Ongoing</td><td>Customer support, onboarding, office hours. Identity via IIQ so access is a form, not my inbox.</td></tr>
+          <tr><td>Ongoing</td><td>Onboard via IIQ: form, manager approval, viewer vs builder. Recertify. Office hours after they are in — not a Slack add-user.</td></tr>
           <tr><td>2023–25</td><td>One certified metric. Teams build their own dashboards. Training 20–30 business teams.</td></tr>
-          <tr><td>2025–26</td><td>English on the same layer. Oracle modules. Weekly AI cost: seats vs overage vs tokens, shelfware reclaim, RLS by user attribute, Google Workspace on the org spine. Cheap model for paste; expensive model for grain.</td></tr>
+          <tr><td>2025–26</td><td>English on the same layer. Oracle modules. Workplace: GWS, service desk, assets, Jira for PMO, security incidents — API into GCP, certified explores, they self-serve. Cheap model for paste; expensive model for grain.</td></tr>
         </tbody>
       </table>
       ${say("Support is how a four-person COE covers an enterprise. Templates and training — not hero tickets.")}`
@@ -525,12 +688,15 @@ const COPY = {
       <table class="art">
         <thead><tr><th>Viking</th><th>I already do</th></tr></thead>
         <tbody>
-          <tr><td>Ingest / ETL</td><td>Informatica, Power Query / Dataflows, Python / PySpark, Tableau Prep. Databricks medallion POC (Bronze–Silver–Gold).</td></tr>
-          <tr><td>Analytical models</td><td>Star schemas, LookML hub-and-spoke, Power BI tabular.</td></tr>
-          <tr><td>Power BI + DAX</td><td>AML models, calculation groups, XMLA partitions, Finance SME on Windows, DirectQuery / live.</td></tr>
-          <tr><td>Unity Catalog metrics</td><td>Certified once. Hide plumbing. Descriptions required before chat.</td></tr>
-          <tr><td>Genie</td><td>Schema-first MCP, golden questions, Looker Conversational Analytics skill, verified answers.</td></tr>
-          <tr><td>Self-service</td><td>Onboarding, training, office hours, no-admin package, no-cost dashboard variant.</td></tr>
+          <tr><td>Ingest · Synapse / Databricks</td><td>Informatica, SQL, Python. Databricks medallion POC. I have not owned Synapse as the daily warehouse — I own the contract that comes out.</td></tr>
+          <tr><td>Star / snowflake + names</td><td>Business names, keys, relationships. Same discipline as BO universes then LookML then Power BI models.</td></tr>
+          <tr><td>Power BI on Fabric</td><td>Certified semantic models, reusable DAX, import vs live. Capacity: skinny model, incremental refresh — I have not run a Fabric tenant.</td></tr>
+          <tr><td>Booking curves · DAX</td><td>Sailing + cabin type + as-of date. Vs last year vs plan. Same muscle as clearance over time at the bank.</td></tr>
+          <tr><td>Genie · metric views</td><td>Certified tables only. Instructions, example SQL, verified answers. Review generated SQL. MCP is the loop I already run.</td></tr>
+          <tr><td>Unity Catalog</td><td>KPI once. Descriptions, glossary, synonyms. RLS and column masking apply to chat. Tags, owner, certified, lineage.</td></tr>
+          <tr><td>Teams / Conversation API</td><td>Chat in the flow of work — after permissions already hold. Same idea as MCP in the IDE for builders.</td></tr>
+          <tr><td>Finance / identity</td><td>GL-style models and exam packs. Access as a group. Row security. Customer data allowed, not just pretty.</td></tr>
+          <tr><td>Self-service + literacy</td><td>Office hours. How to ask. What the model cannot do. Prompt: name the sailing, the date, the grain.</td></tr>
         </tbody>
       </table>
       ${say("Your warehouse is Databricks. The contract does not change: certify → let people build viz → then let them prompt.")}`,
@@ -545,55 +711,84 @@ const COPY = {
   foundation: {
     work: () => `
       <div class="hero"><h2>2001–2016 · Grad, then BI</h2>
-      <p>B.E. Computer Science, Madras University, 2001. First jobs after that — not a BI chapter. Dell in 2003 is where this craft starts. Then VALE, Daimler, Bridgewater.</p></div>
-      ${say("Germany was Daimler, June 2013 to April 2016 — Cognos, BO, MSBI, SPSS for data science. Then Westport.")}
+      <p>Bachelor of Engineering (B.E.) in Computer Science, Madras University, 2001 — the U.S. equivalent is a B.S. in CS. First jobs after that — not a BI chapter. Dell in 2003 is where this craft starts. Then VALE, Daimler, Bridgewater.</p></div>
+      ${say("Germany was Daimler, June 2013 to April 2016. Infosys built the SPSS and R models. I kept the platform up: incidents and change, so predictive work could ship.")}
       <table class="art">
         <thead><tr><th>When</th><th>Where</th></tr></thead>
         <tbody>
-          <tr><td>2001</td><td>B.E. CS · Madras University</td></tr>
+          <tr><td>2001</td><td>B.E. CS · Madras University — Bachelor of Engineering; U.S. equivalent is a B.S. in Computer Science</td></tr>
           <tr><td>2001 – Mar 2003</td><td>First jobs. Not briefed. BI starts next row.</td></tr>
           <tr><td>Apr 2003 – Jul 2007</td><td>Dell International · GDC · CCOD analytics, customer-satisfaction feedback-agent, HR / team metrics · BO universes + WebI</td></tr>
           <tr><td>Nov 2008 – May 2013</td><td>VALE (Infosys) · Toronto · universes + WebI · support → technical PM for Database + BI, onsite and offshore</td></tr>
-          <tr><td>Jun 2013 – Apr 2016</td><td>Daimler AG · Stuttgart · Cognos, BO, MSBI · SPSS Modeler for data science · BI frontend into steady-state</td></tr>
+          <tr><td>Jun 2013 – Apr 2016</td><td>Daimler AG · Stuttgart · Cognos, BO, MSBI. SPSS / R data science with Infosys. I owned incident and change on that platform.</td></tr>
         </tbody>
       </table>
-      ${cards([{h:"Tools", html:"<p>BO universes (semantic layer), WebI, Cognos packages, MSBI / SSRS, SPSS Modeler, Informatica, SQL Server, early Tableau Server.</p>"},{h:"Fit", html:"<p>Departments get production. The customer is who has to live with the report.</p>", p:true}])}`,
+      ${cards([{h:"SAP Business Objects", html:"<ul><li>Universe Designer / Information Design Tool — that is the semantic layer</li><li>Web Intelligence — the report the business opens</li><li>Crystal Reports — pixel-fixed pages</li><li>CMC — users, schedules, cluster</li><li>Xcelsius / Dashboards — the exec tile</li></ul>"},{h:"IBM Cognos", html:"<ul><li>Framework Manager — the package / model</li><li>Report Studio — authored reports</li><li>Query Studio — ad-hoc</li><li>Cognos Connection — the portal</li><li>Event Studio — bursting and alerts</li></ul>"},{h:"How data got in", html:"<p>Ad-hoc SQL first so I know the grain. Then I sit with the enterprise ETL team (Informatica). I bring the requirement. They land the table. I certify it and put it in BO, Cognos, or Tableau. That is an end-to-end project, not a chart on a laptop dump.</p>", p:true}], 3)}
+      ${cards([
+        {h:"Infosys built (SPSS + R)", html:"<ul><li>IBM SPSS Modeler — predictive models for the data-science team</li><li>Customer survey text turned into metrics a manager can use — not a pile of comments</li><li>R for the stats the SPSS stream needed</li></ul>"},
+        {h:"What I ran", html:"<p>I did not write those models. I managed the platform they ran on: incidents, change, CAB so a model move did not take production down. Same muscle as VALE — keep the lights on so the science can ship.</p>", p:true}
+      ])}`,
     bw: () => `
       <div class="hero"><h2>May 2016 – Dec 2017 · Bridgewater Associates · Westport</h2>
-      <p>Tableau Data Architect on Corporate Data — Grand Central, the firm’s operating metrics. Informatica for the dimensional model. SQL Server underneath. Tableau Server for the room.</p></div>
-      ${say("Grand Central was the firm on one certified picture. The Principles project — Ray Dalio’s radical transparency — I drove from design through Tableau development, then to leadership, after the vendor left.")}
+      <p>Tableau Data Architect via Cognizant. Two rooms: Grand Central (firm operating metrics) and the Principles picture — the Dot Collector — as Tableau.</p></div>
+      ${say("Grand Central was the firm on one certified picture. The Dot Collector work was Ray Dalio’s Principles as a dashboard: 360 feedback, strengths and gaps a leader could read. Their vision. Mock data until the layout was honest. Interworks started it. They left. I took design through Tableau to leadership.")}
       ${cards([
-        {h:"What I built", html:"<ul><li>Rapid prototypes of corporate metrics dashboards, then production workbooks</li><li>Tableau metadata models on Informatica conformed dimensions</li><li>T-SQL objects: tables, materialized views, functions</li><li>Live vs extract by volume. Live used Kerberos constrained delegation</li><li>Publish, schedule, and user filters on Tableau Server</li></ul>"},
-        {h:"How Tableau was used", html:"<ul><li>As-is / to-be gap analysis with the BAs, then a technical design</li><li>Parameters, sets, action filters, forecast and trend lines</li><li>Data blending when one source was not enough</li><li>Row-level security and ACLs — groups see their slice, not the firm</li></ul>", p:true}
+        {h:"Grand Central", html:"<ul><li>Corporate metrics — the operating picture</li><li>Informatica dimensions. SQL Server. Tableau Server</li><li>Live vs extract. Kerberos when it was live</li><li>RLS so a group saw its slice, not the firm</li></ul>"},
+        {h:"Dot Collector", html:"<ul><li>The in-house product for radical transparency — dots, then a profile view (they called those Baseball Cards)</li><li>I did not write the scoring engine. I built the Tableau on their vision</li><li>Mock data for the better part of a year so leadership could see the picture before live 360 sat under it</li></ul>", p:true}
+      ])}
+      ${cards([
+        {h:"How I got the work", html:"<p>Interworks had the first pass. Cognizant picked it up when they left. I drove the gap analysis with the BAs, the Tableau, then the room with leadership.</p>", p:true},
+        {h:"How Tableau was used", html:"<ul><li>As-is / to-be, then a technical design</li><li>Parameters, sets, action filters, trend</li><li>Publish, schedule, user filters on Server</li></ul>"}
       ])}`
   },
   "tableau-early": {
     wwe: () => `
       <div class="hero"><h2>Jan – Sep 2018 · WWE · Stamford</h2>
-      <p>Data Engineering / BI. Tableau was the product the business opened. I was on the platform and on the campaign work, not a one-off dashboard shop.</p></div>
-      ${say("Self-serve dies without a landing page, certified sources, templates, and a release gate. That is the COE practice I stood up.")}
+      <p>Tableau was the product the business opened. Cognos was still there — the India team kept those legacy reports. I did not author Cognos in Stamford. I took the requirement, sat with offshore, and moved the report to Tableau.</p></div>
+      ${say("That is the same muscle as VALE: onsite with the business, offshore on the build, I own the hand-off so the number the exec opens is right.")}
       ${cards([
-        {h:"Platform", html:"<ul><li>Tableau Server on AWS — admin, release review before production, templates</li><li>Certified SQL / materialized / secure views on Redshift for large and confidential sources</li><li>Informatica for conformed dimensions. Google Analytics in the mix</li><li>Org landing page and onboarding workshops so new users did not get lost</li><li>Ops from the Tableau repository: who viewed what, background tasks, license use</li><li>Tabcmd bursting for people who were not on Server</li></ul>"},
-        {h:"How we used Tableau", html:"<ul><li>Datorama held the social and email campaigns (Facebook, Twitter, Instagram)</li><li>Results landed in the warehouse. Tableau told the story — success, surveys, spend</li><li>Funnels and user-behavior models with Marketing for acquisition</li><li>Cognos still ran; I planned the 10.2 → 11 move. Tableau was the forward path</li></ul>", p:true}
-      ])}`,
+        {h:"What I ran", html:"<ul><li>Tableau Server on AWS — admin, templates, nothing to production until I reviewed it</li><li>Org landing page and onboarding workshops</li><li>Ops from the Tableau repository: who viewed what, background tasks, license use</li><li>Tabcmd bursting for people who were not on Server</li></ul>"},
+        {h:"Cognos → Tableau", html:"<ul><li>Legacy Cognos reports: India / Cognizant team</li><li>I sat with the business, wrote the requirement, worked the offshore queue</li><li>Forward path was Tableau — not a Cognos upgrade I ran myself</li></ul>"},
+        {h:"Data I used. Pipelines I did not write", html:"<ul><li>Informatica landed conformed dimensions — I brought the grain, they landed the table</li><li>Redshift held large and confidential sources. I used the certified / secure views. I did not build those loads</li><li>Datorama held social and email. Results in Redshift. Tableau told spend, surveys, whether the campaign worked</li><li>Clickstream and ads with Marketing — acquisition and subscription forecast</li></ul>", p:true}
+      ], 3)}`,
     warner: () => `
       <div class="hero"><h2>Oct 2018 – Dec 2019 · Warner Bros · DCU app</h2>
-      <p>Burbank. Prestige DCU consumer analytics. I reported to Terrence Chui. Tableau was how product and marketing saw churn, usage, and whether an ad actually worked.</p></div>
-      ${say("Churn and usage are not charts. They are grain: user, session, campaign, week — certified, then visualized.")}
+      <p>Burbank. I reported to Terrence Chui. The app was video plus comics plus a paywall. Product and marketing lived in Tableau. Engineering was moving the warehouse from Redshift to Snowflake. Airflow ran the loads. I did not write those jobs.</p></div>
+      ${say("My job: name the funnel so engineering does not land a mash. Then certify it. Then let them see churn, usage, and whether the ad paid back.")}
+      <table class="art">
+        <thead><tr><th>I owned</th><th>The platform team owned</th></tr></thead>
+        <tbody>
+          <tr><td>Sit with product. What is a subscriber, a session, a campaign, a week.</td><td>Stream app events (subscribe / trial, video, comic page). Land files. Load the warehouse.</td></tr>
+          <tr><td>Looker POC — funnel as one truth, to pick the tool. Tableau stayed for Terrence’s room.</td><td>Redshift still served. Snowflake was the new house. Airflow copied S3 → Snowflake and turned compute off when the copy finished.</td></tr>
+          <tr><td>Certified Tableau sources: reconcile, dictionary, publish. Training. Release gate.</td><td>Datorama held the ads. I did not run Datorama. I joined campaign to subscriber at a grain that did not double-count.</td></tr>
+        </tbody>
+      </table>
       ${cards([
-        {h:"The product", html:"<ul><li>DCU app analytics: usage, retention / churn, acquisition after launch</li><li>User profiling so Marketing could hit targets, not guess</li><li>Funnel, segments, campaign KPIs, and a forecast on the same model</li><li>Privacy rules on consumer data — the model had to be allowed, not just pretty</li></ul>"},
-        {h:"How we used Tableau", html:"<ul><li>KPI dashboards, stories, drill, custom members — Tableau Desktop 2018/2019</li><li>Datorama ran the ads (social + email). Airflow moved results. Snowflake stored them. Tableau was the story</li><li>Google Analytics + Redshift in the same workbooks where the grain matched</li><li>Certified Tableau data sources: reconcile, secure views, dictionary, then publish for self-serve</li><li>Training so the business built the next view on those sources</li><li>Release gate: nothing to production until the dashboard was reviewed</li></ul>", p:true}
-      ])}
-      <p class="note">Looker POC sat behind funnel definitions as a candidate single source of truth — to pick the right tool, not to replace Tableau for Terrence’s stakeholders.</p>`
+        {h:"What the numbers had to mean", html:"<ul><li>Guest → trial → paid. Video watch is not a comic page-turn. Mash them and “engagement” is fiction</li><li>Same person on phone and TV — one subscriber, or Marketing targets a ghost</li><li>Privacy on consumer data — allowed, not just pretty</li></ul>"},
+        {h:"What I put in Tableau", html:"<ul><li>Usage, retention / churn, acquisition after launch</li><li>Campaign ROI from Datorama results that had already landed in Snowflake</li><li>Google Analytics next to the warehouse only where the grain matched</li><li>Stories, drill, Desktop 2018/2019. They built the next view on the certified source</li></ul>", p:true}
+      ])}`
   },
   pbi: {
     aml: () => `
-      <div class="hero"><h2>2019–21 · Bank of Hope · Power BI for AML / OFAC.</h2>
-      <p>AML / OFAC MIS. Screening sources into one file investigators could defend. Board-level findings.</p></div>
-      ${say("Warehouse first. Tabular Editor and Power Query against the warehouse — not a pretty shadow model.")}
+      <div class="hero"><h2>2019–21 · Bank of Hope · Power BI for AML / OFAC</h2>
+      <p>An FDIC-insured bank lives in exam season. I sat on the business side of BSA / AML — not in the warehouse team — and made reporting fast enough that KYC, SAR, OFAC, and board packs were the same certified file the examiner could open.</p></div>
+      ${say("I prototyped on a laptop. IT landed the warehouse. Analysts and VPs pulled one certified dataset. A private Excel copy is how you fail an exam.")}
+      <table class="art">
+        <thead><tr><th>What the exam asks</th><th>What I had to show</th></tr></thead>
+        <tbody>
+          <tr><td>KYC / CIP</td><td>Who is this customer. ID, address, beneficial owner. Completeness, not a story.</td></tr>
+          <tr><td>OFAC / sanctions</td><td>Screened against Treasury SDN (and the other lists we ingested). Hit vs false positive. Time to clear.</td></tr>
+          <tr><td>SAR / CTR</td><td>What we filed, what we did not, why. Counts by period an examiner can re-run.</td></tr>
+          <tr><td>Board / independent test</td><td>Risk, backlog, aging. Paginated pages when the room wants a paper trail.</td></tr>
+        </tbody>
+      </table>
       ${cards([
-        {h:"What I built", html:"<ul><li>Star-schema semantic models</li><li>Power Query / M and Dataflows as ETL</li><li>Python / PySpark on unstructured logs</li><li>XMLA partitions when refresh would not finish</li><li>DAX for time, variance, clearance rates</li><li>Paginated reports for examiners</li></ul>"},
-        {h:"Viking", html:"<p>Booking curves are grain + time intelligence. I already write that class of measure under audit pressure.</p>", p:true}
+        {h:"Source files I had to reconcile", html:"<ul><li>Treasury OFAC SDN (and related sanctions lists)</li><li>Core banking extracts — deposits, loans, customer master</li><li>Wire / ACH / SWIFT activity</li><li>CIP / KYC onboarding files</li><li>SAR / case-management extracts</li></ul>"},
+        {h:"How the number got honest", html:"<ul><li>Python locally — prep messy extracts, profile the customer, flag collisions</li><li>Power Query / M — shape what Power BI can see</li><li>Counter-work with warehouse IT — conformed dims, star schema, certified datasets</li><li>Power BI + Tabular Editor + DAX — time, variance, clearance. XMLA when refresh died</li><li>Paginated reports for the exam binder</li></ul>", p:true}
+      ])}
+      ${cards([
+        {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. If entity mapping is wrong, you double-count risk or you miss the customer. I profiled locally, named the grain, then IT landed the key the VPs could pull.</p>"},
+        {h:"Same math Viking needs", html:"<p>How many cases cleared this week vs last year is the same shape as how many cabins are sold 90 days before sail vs last year’s sailing. I already write that when someone can challenge the number.</p>", p:true}
       ])}`,
     coe: () => `
       <div class="hero"><h2>COE · Power BI SME for Finance on Windows.</h2>
@@ -607,193 +802,104 @@ const COPY = {
       <p>Twelve fragmented on-prem BI systems folded into cloud Looker. Tableau Server migrated to Tableau Cloud — that move I ran end to end.</p></div>
       ${say("Migration is not a lift-and-shift of reports. It is a chance to certify the model so you never migrate the mess.")}
       ${cards([
-        {h:"Looker (ticketed, sprint by sprint)", html:"<ul><li>HR analytics onto Looker</li><li>Prod → cloud (connection, git, groups)</li><li>Sports, hub-and-spoke media</li><li>Finance off a legacy reporting stack: connection → project → git → model → explore → folders</li><li>On-prem warehouse → cloud warehouse, then validate the old dashboards</li></ul>"},
-        {h:"Tableau (I owned this lane)", html:"<ul><li>Server → Cloud from 2024</li><li>Inventory folders and views first, then RLS, then project onboarding</li><li>Cloud tree: Finance, Sales, Sports, SCORE, COE</li><li>Prep for heavy transforms. Pulse only after a freshness scan</li></ul>", p:true}
+        {h:"Looker (ticketed, sprint by sprint)", html:"<ul><li>HR analytics onto Looker</li><li>Prod → cloud (connection, git, groups)</li><li>Sports and media on hub-and-spoke</li><li>Finance: own instance. MicroStrategy → Looker — inventory, P1/P2/P3, then git / model / explore / IIQ. <button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"fin\">Finance instance</button></li><li>On-prem warehouse → cloud warehouse, then check the old dashboards still match</li></ul>"},
+        {h:"Tableau (I owned this lane)", html:"<ul><li>Server → Cloud from 2024</li><li>Inventory folders and views first, then row security, then project onboarding</li><li>Prep for heavy transforms. Pulse only after a freshness check</li></ul>", p:true}
       ])}`,
     six: () => `
-      <div class="hero"><h2>Six Looker instances — by business need. Not by accident.</h2>
-      <p>Disparate estates were not merged into one giant instance. Each instance maps to a domain so grain, access, and cost stay honest.</p></div>
-      ${say("One instance for the whole company sounds tidy and then nobody can govern it. Six, on purpose.")}
+      <div class="hero"><h2>Six instances — by domain. Not one pile.</h2>
+      <p>Each cluster keeps its grain, its access, and its cost. Merge them and a valid explore from the wrong business still returns a number.</p></div>
+      ${say("One Looker for the whole company looks tidy. Then nobody can tell which model is the contract.")}
+      <table class="art">
+        <thead><tr><th></th><th>What we did</th></tr></thead>
+        <tbody>
+          <tr><td>Instance</td><td>Which business is allowed in this room. Finance is its own — GL does not sit next to Search.</td></tr>
+          <tr><td>Model</td><td>Which subject. Hub views, spoke model.</td></tr>
+          <tr><td>Explore</td><td>Which grain. The question has to land here.</td></tr>
+        </tbody>
+      </table>
       ${cards([
-        {h:"What I owned", html:"<ul><li>Which domains share a cluster</li><li>Hub metrics that every instance may consume</li><li>Spoke models that must not fork the KPI</li></ul>"},
-        {h:"Why it matters now", html:"<p>Conversational AI is scoped the same way: instance → model → explore. Wrong explore looks valid.</p>", p:true}
+        {h:"Chat is not a new idea", html:"<p>Genie / MCP uses the same map: instance → model → explore. That line is the gate. Not a slogan.</p>", p:true}
       ])}`
   },
   looker: {
     did: () => `
       <div class="hero"><h2>Looker · six years of platform + customers.</h2></div>
-      ${say("I am admin, modeler, and the person who sits with the team until they can build without me.")}
+      ${say("I am admin, modeler, and the person who sits with the team until they can build without me. Hub-and-spoke is how we stop every team rewriting the same calendar and the same org key.")}
       ${cards([
-        {h:"Platform", html:"<ul><li>Instance design and hub-and-spoke LookML</li><li>IIQ for automated access</li><li>Standards: format the view, guards, descriptions</li><li>Skills so the next view is already AI-ready</li></ul>"},
-        {h:"Customers", html:"<ul><li>Onboarding path: intake, not a private ask</li><li>Office hours</li><li>LookML guides</li><li>Partnered with dozens of project teams from discovery to production dashboards</li></ul>", p:true}
+        {h:"Platform", html:"<ul><li>Instance design. Hub-and-spoke: one semantic codebase per domain, spokes on dependent repos</li><li>Access via IIQ groups, not my inbox</li><li>Standards: format the view, guards, descriptions</li><li>Git so the next person can change it without me</li></ul>"},
+        {h:"Customers", html:"<ul><li>Onboarding path: intake, not a private ask</li><li>Weekly office hours</li><li>Sit with the team on their error, their long query, their messy explore</li><li>Partner from discovery to a dashboard they can keep</li></ul>", p:true}
       ])}`,
-    viz: () => `
-      <div class="hero"><h2>They build the visualization. I certify the field.</h2></div>
-      ${say("Self-serve died when every chart needed a ticket. It lives when the explore is labeled, plumbed fields are hidden, and office hours exist.")}
+    fin: () => `
+      <div class="hero"><h2>Finance is its own Looker instance. MicroStrategy did not become one explore.</h2>
+      <p>Their reporting lived in MicroStrategy — AP, AR, GL, and the rest of the Oracle stack as OLAP reports. We stood up a Finance instance, inventoried what they actually used, moved it in priority waves, and ran Looker next to MicroStrategy until they trusted the number. Then the old tool retired.</p></div>
+      ${say("Not a lift of every report. Combine where the grain was the same. Train the MicroStrategy team to build Looks. IIQ for the module they need — not a shared Finance login.")}
+      <div class="lane"><h4>How the cutover ran</h4>
+        <div class="row">
+          <div class="nodeb grey">Inventory<span>P1 · P2 · P3</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">LookML<span>One git. Model per module.</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">IIQ<span>GL · AP · AR · …</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb pink">Parallel<span>Sign-off vs MicroStrategy</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">They build</div>
+        </div>
+      </div>
+      <table class="art">
+        <thead><tr><th>How it is shaped</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>One Finance project. Many models.</td><td>Each model is an Oracle module: GL, AP, AR, fixed assets, cash, procurement, tax, revenue, T&amp;E, and the rest. Access is at the model. A GL user does not inherit AP.</td></tr>
+          <tr><td>Warehouse connection vs live ERP connection.</td><td>Close / warehouse grain is not the same as real-time journals. Mixing them in one explore is a confident wrong number.</td></tr>
+          <tr><td>Lookup explores vs fact explores.</td><td>Company, account, cost center, period are filters. Trial balance, journals, drill to AP / AR / FA are the work. Subscription explores exist so a schedule does not use the ad-hoc path.</td></tr>
+          <tr><td>Period (and ledger) required on GL.</td><td>No period is not “all history.” It is an empty or runaway query. The explore says so.</td></tr>
+        </tbody>
+      </table>
       ${cards([
-        {h:"What users get", html:"<ul><li>Explores they can trust</li><li>Group labels a person can scan</li><li>Drills that stay on grain</li></ul>"},
-        {h:"What I refuse", html:"<p>Unlabeled fields in an explore that chat or a new analyst will touch.</p>", p:true}
-      ])}`
-  },
-  tableau: {
-    did: () => `
-      <div class="hero"><h2>Tableau · same six years, same COE.</h2></div>
-      ${say("Looker did not replace Tableau. I ran both so each tool earns its keep.")}
-      ${cards([
-        {h:"What I did", html:"<ul><li>Tableau Server → Cloud (Jira TABLEAU project from 2024 — that lane is mine)</li><li>Cloud project tree: Finance, Sales, Sports, SCORE, COE</li><li>Prep pipelines and virtual connections</li><li>Pulse on certified data only</li><li>Training alongside Looker</li></ul>"},
-        {h:"Skill I wrote", html:"<p>/tableau-scan — mandatory filters, grain, extract freshness before any query. Skipping it is how wrong numbers look valid.</p>", p:true}
+        {h:"What I did on the COE side", html:"<ul><li>Connection, git, model, explore, folders, SAML / IIQ groups — the same 2.1–2.6 playbook</li><li>Office hours and a getting-started path: Look vs dashboard vs explore. How to export. How to test.</li><li>Typical mismatches with MicroStrategy (rounding, trim, NULL) named so they are not filed as “Looker is wrong”</li></ul>"},
+        {h:"What we do now with MCP", html:"<p>Connect to Finance Looker. List the models — that is the Oracle module map, live. Then refactor LookML: old chart of accounts vs new, required filters, subscription vs ad-hoc. They keep the dashboards. We leave the explore honest.</p>", p:true}
       ])}`,
-    gov: () => `
-      <div class="hero"><h2>Tableau consumes the semantic layer. It is not a second warehouse.</h2></div>
-      ${cards([
-        {h:"Cross-check", html:"<p>/cross-validate — same metric in Looker and Tableau. Gaps are grain, future dates, or joins.</p>"},
-        {h:"Fit", html:"<p>Power BI vs Databricks SQL vs Genie will disagree the same three ways.</p>", p:true}
-      ])}`
-  },
-  enable: {
-    small: () => `
-      <div class="hero"><h2>A small COE covers the enterprise if self-serve is real.</h2></div>
-      ${say("If the next request still needs me in the chair, I built a dependency. If an analyst can do it, I built a COE.")}
-      ${cards([
-        {h:"How work arrives", html:"<ul><li>Intake form, not Slack DMs</li><li>IIQ groups, not manual accounts</li><li>Viewer vs builder is a decision, not a favor</li></ul>"},
-        {h:"How work leaves", html:"<ul><li>A template the next team copies</li><li>Office hours in the open</li><li>Guides a non-engineer can follow</li></ul>", p:true}
-      ])}`,
-    train: () => `
-      <div class="hero"><h2>Train the org. Then get out of the way.</h2>
-      <p>Looker and Tableau sessions. Interactive office hours. LookML best-practice guides. 20–30 business teams.</p></div>
-      ${say("I would rather sit twice with Finance than take their reporting as a permanent ticket queue.")}
-      ${cards([
-        {h:"What training covers", html:"<ul><li>Where to go (landing, instance, explore)</li><li>How to ask without breaking grain</li><li>When to use Looker vs Tableau vs Power BI</li></ul>"},
-        {h:"Now", html:"<p>The same enablement path is how people get MCP and conversational analytics — one command, or a package if they cannot install git.</p>", p:true}
-      ])}`
-  },
-  semantic: {
     hub: () => `
-      <div class="hero"><h2>Hub-and-spoke. Certified once. Every viz reuses it.</h2></div>
-      ${say("Shared calendar, org, keys, certified revenue and cost live in the hub. Spokes consume. They do not fork the KPI.")}
-      <div class="lane"><h4>The contract</h4>
+      <div class="hero"><h2>One codebase owns the data and the semantic layer. Downstream extends it.</h2>
+      <p>We implemented this. Each domain has a hub LookML project and one or more spoke projects on their own git. The spoke does not rewrite revenue. It remote-imports the hub and uses Looker’s extends and refinements for the KPIs only that team needs.</p></div>
+      ${say("The spoke cannot push a change back into the hub. That is the point. Repeatability dies because Looker project import is the contract — not a copied view.")}
+      <div class="lane"><h4>What we shipped</h4>
         <div class="row">
-          <div class="nodeb grey">Data<span>Keys. Tests. Readable names.</span></div>
+          <div class="nodeb purple">Hub<span>Views + explores. No model.</span></div>
           <div class="arrow">→</div>
-          <div class="nodeb purple">Semantic<span>Certified metrics</span></div>
+          <div class="nodeb blue">Remote import<span>Manifest · dependent repo</span></div>
           <div class="arrow">→</div>
-          <div class="nodeb blue">Viz<span>Looker · Tableau · Power BI</span></div>
+          <div class="nodeb pink">Spoke<span>Own model + connection</span></div>
           <div class="arrow">→</div>
-          <div class="nodeb green">Talk<span>Conversational / MCP / Genie</span></div>
+          <div class="nodeb green">Extend / refine<span>Local KPIs only</span></div>
         </div>
       </div>
-      ${cards([{h:"Skill", html:"<p>/lookml-format-view — hide plumbing, require descriptions, group labels, drills. Run before review and before chat is turned on.</p>", p:true}])}`,
-    ready: () => `
-      <div class="hero"><h2>The semantic layer was built for conversation — years before the chat UI.</h2></div>
-      ${say("Unlabeled fields are how a chat tool guesses. I formatted the layer so today’s in-built conversational analytics and MCP hit the same certified fields the dashboards use.")}
-      ${cards([
-        {h:"Then", html:"<p>Analysts build dashboards and get quick insights without a ticket.</p>"},
-        {h:"Now", html:"<p>Looker Conversational Analytics YAML from a persona + golden questions. MCP on the same explores. Same number.</p>", p:true}
-      ])}`
-  },
-  oracle: {
-    mods: () => `
-      <div class="hero"><h2>One connector. Modules inside — not a tile per system.</h2>
-      <p>Planning first. Then Fusion on the same auth pattern. The user does not install three tools to ask one finance question.</p></div>
-      ${say("Identity is not authorization. A valid login with no access to that module gets 403 from the native app.")}
       <table class="art">
-        <thead><tr><th>Module</th><th>What a person can ask</th></tr></thead>
+        <thead><tr><th>Looker capability we used</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>EPM Planning</td><td>Plan, forecast, dimensional planning data — user’s own security.</td></tr>
-          <tr><td>General Ledger</td><td>Journals, batches, lines, ledgers, balances.</td></tr>
-          <tr><td>Supplier</td><td>Vendor master, contacts, addresses, classifications.</td></tr>
-          <tr><td>CLM</td><td>Contract headers, parties, documents.</td></tr>
+          <tr><td>Hub = views and explores only — no model file</td><td>A spoke can import more than one domain hub. A model in the hub creates circular dependency when two domains share each other.</td></tr>
+          <tr><td>Remote project import (preferred over local)</td><td>Works across Looker instances. Spoke git stays independent. Own release cycle.</td></tr>
+          <tr><td>extends + refinements</td><td>Localized KPIs live in the spoke repo. Certified fields stay in the hub. No second copy of revenue.</td></tr>
+          <tr><td>extension: required on hub objects</td><td>Nobody builds content on the hub itself. Test model in the hub, then delete it.</td></tr>
+          <tr><td>Update Dependencies after a hub merge</td><td>Spokes pick up the new semantic layer on purpose — not by silent paste.</td></tr>
         </tbody>
       </table>
-      ${cards([{h:"v1 lesson", html:"<p>Dumping the full API schema crashed the session. Schema-first: a routing brief + a small field list per module. Specialists edit JSON. Server code stays still.</p>", p:true}])}`,
-    route: () => `
-      <div class="hero"><h2>Route on the words in the question.</h2>
-      <p>From the Fusion domain brief I wrote. The same English word means different resources. Guessing is how you get a confident wrong answer.</p></div>
       <table class="art">
-        <thead><tr><th>They say</th><th>Module</th></tr></thead>
+        <thead><tr><th>Hub team owns</th><th>Spoke team owns</th></tr></thead>
         <tbody>
-          <tr><td>supplier, vendor, remit-to</td><td>Supplier</td></tr>
-          <tr><td>journal, ledger, posting, period</td><td>GL</td></tr>
-          <tr><td>contract, agreement, clause</td><td>CLM</td></tr>
-          <tr><td>plan, forecast, entity, scenario</td><td>Planning</td></tr>
-        </tbody>
-      </table>
-      ${say("Unity Catalog + Genie is the same idea: certified objects, instructions, do not let the model pick any table.")}`
-  },
-  ai: {
-    payoff: () => `
-      <div class="hero"><h2>Conversational is the next level of the same ability.</h2>
-      <p>MCP already pulled the estate. Then I made certified finance and BI askable in English.</p></div>
-      ${say("Genie is a contract: certified tables, glossary, golden questions, review the SQL. I have already run that loop.")}
-      ${cards([
-        {h:"What failed", html:"<ul><li>Dump the warehouse into the model</li><li>Let it pick any table</li><li>Ship without a human look</li></ul>"},
-        {h:"What shipped", html:"<ul><li>Looker + Tableau + Oracle through MCP</li><li>Skills library that loads with the connector</li><li>/looker-lca-agent — conversational YAML from a persona, not weeks of hand-authoring</li></ul>", p:true}
-      ])}`,
-    skills: () => `
-      <div class="hero"><h2>A skill is a repeatable expert procedure.</h2>
-      <p>I used the agents to write LookML, tickets, and PRs — then I wrote the rules so the next person does not burn tokens reinventing the same job.</p></div>
-      ${say("Cheap model for paste and read-back. Expensive model only when grain or a join is on the line. Skills name tiers so the picker can change.")}
-      <table class="art">
-        <thead><tr><th>Skill</th><th>Stops</th></tr></thead>
-        <tbody>
-          <tr><td>looker-scope</td><td>Wrong instance / explore</td></tr>
-          <tr><td>lookml-format-view</td><td>Unlabeled fields in chat</td></tr>
-          <tr><td>tableau-scan</td><td>Query before grain / freshness</td></tr>
-          <tr><td>cross-validate</td><td>Two tools, two numbers</td></tr>
-          <tr><td>looker-lca-agent</td><td>Weeks to stand up conversational analytics</td></tr>
-          <tr><td>agent-model-routing</td><td>Expensive model on a paste job</td></tr>
-          <tr><td>agent-cost-discipline</td><td>40-turn chats, SELECT *, skill re-reads</td></tr>
+          <tr><td>Standard views, explores, certified metrics, org/calendar keys</td><td>Model file, warehouse connection, dashboards, domain KPIs via extend/refine</td></tr>
+          <tr><td>Change via ticket + PR on the hub repo</td><td>Independent sprint. Cannot write back to the hub.</td></tr>
+          <tr><td>One number for the metric the org already agreed</td><td>Cross-domain reporting by importing another domain’s hub — still no fork</td></tr>
         </tbody>
       </table>
       ${cards([
-        {h:"How I used the tools", html:"<ul><li>One chat ≈ one ticket. State lives in Jira / PR, not a week-long thread</li><li>Read the matching skill once. Grep and line ranges after that</li><li>MCP: schema → named fields → LIMIT. Stop after one validation query</li><li>LookML: prepare locally → IDE validate → IDE PR</li></ul>"},
-        {h:"Haiku vs expensive", html:"<p>TIER_LOW is the cheap fast model (Haiku-class in today’s picker) — Jira/Slack from a draft, log skim. TIER_HIGH is the expensive model — metric grain, joins, why the number is wrong. SHELL is free: git and grep. If unsure, HIGH once, then LOW for the repetition.</p>", p:true}
-      ])}`
-  },
-  pipeline: {
-    pull: () => `
-      <div class="hero"><h2>Estate through MCP. Every instance, in parallel.</h2></div>
-      ${say("MCP pulls. Python freezes grain. The console is how leadership sees it. Monday 6:00 AM. Live dashboard re-reads the file — no redeploy to refresh.")}
-      <div class="lane"><h4>One refresh</h4>
-        <div class="row">
-          <div class="nodeb grey">Org hierarchy</div>
-          <div class="arrow">+</div>
-          <div class="nodeb blue">Looker × 6<span>MCP, parallel</span></div>
-          <div class="arrow">+</div>
-          <div class="nodeb pink">Tableau</div>
-          <div class="arrow">→</div>
-          <div class="nodeb purple">Consolidator</div>
-          <div class="arrow">→</div>
-          <div class="nodeb green">Two consoles<span>spend / no-spend</span></div>
-        </div>
-      </div>
-      ${cards([
-        {h:"Grain", html:"<ul><li>History is fact. Inventory is now.</li><li>Org-unique = set-union. Never sum instances.</li><li>Month ledger freezes completed months.</li></ul>"},
-        {h:"Expansion", html:"<p>Same loop on any org dataset: pull → freeze grain → visualize → prompt. Accessibility: no-cost variant for rooms that should not see spend.</p>", p:true}
-      ])}`,
-    cost: () => `
-      <div class="hero"><h2>Ingest every vendor. One weekly grain. Then act.</h2>
-      <p>OurYahoo LookML project. Vendor feeds land in the warehouse. Looker certifies committed seats vs overage vs tokens.</p></div>
-      ${say("Seats are the first AI cost line. Tokens and overage are the second. Shelfware is a licensed seat with no work. The semantic layer is where those definitions live — not a slide.")}
-      <div class="mmap-steps" style="margin-bottom:14px">
-        <b>Vendor feeds</b><b>Weekly snapshot</b><b>Committed vs overage</b><b>Tokens by model</b><b>Shelfware persona</b><b>Chargeback</b>
-      </div>
-      ${cards([
-        {h:"What I ingested", html:"<ul><li>Flat-seat apps (no usage split)</li><li>Seat + overage tools</li><li>API / token consumption</li><li>Code/IDE usage on the variable line</li></ul>"},
-        {h:"KPIs I wrote", html:"<ul><li>Committed seat spend vs overage &amp; usage (they add to total)</li><li>Overage % of spend and of people</li><li>Has overage flag — who is past the seat</li><li>Tool breadth — how many apps on one person’s bill</li><li>Tokens by model (cache vs net-new) — why the overage happened</li></ul>", p:true}
-      ])}
-      ${cards([
-        {h:"Shelfware", html:"<p>Persona on the license: pending, zero use, low use, active, champion. Reclaim the first three. Do not average them into “adoption.”</p>"},
-        {h:"Cadence guards", html:"<p>Weekly explore defaults to last completed week. Monthly ChatGPT explore is locked to monthly snapshots. Weeks must not sum into a fake month. Token explore is not joined to the spend explore — different grain would fan out dollars.</p>"}
-      ])}
-      ${cards([
-        {h:"Rules I put in git", html:"<ul><li>Skills before improvising</li><li>MCP: schema → fields → LIMIT</li><li>One chat ≈ one ticket</li><li>Cheap model for paste; expensive model for grain</li><li>No MCP footers on Slack / Jira</li></ul>"},
-        {h:"Why it cut cost", html:"<p>Overage is tokens, not seats. Local semantic rules (tiers, LIMIT, fresh chat) stop the agent from being the overage. The Looker model shows managers where the bill actually moved.</p>", p:true}
+        {h:"Code review", html:"<p>Did the spoke remote-import and extend, or paste a hub view? Did anyone put a model in the hub? Copy is two numbers in one meeting. That fails review.</p>"},
+        {h:"Who finds what", html:"<p>Developers get a catalog of domain hubs. Viewers get a domain board. Import is not a wider export — <button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"rls\">RLS &amp; trees</button> still slices the row.</p>", p:true}
       ])}`,
     rls: () => `
-      <div class="hero"><h2>User attribute in. Org slice out. Two trees, never mixed.</h2>
-      <p>Confidentiality is not a dashboard filter someone can clear. The warehouse mapping function only returns the rows that Looker user is allowed to see.</p></div>
-      ${say("Looker passes the employee short-id user attribute into the table function. Same RLS on weekly spend, tool breadth, and token analytics. Identity is not a wider export.")}
+      <div class="hero"><h2>RLS · who sees which row. Not which dashboard exists.</h2>
+      <p>IIQ gets the person in. Estate 360 counts stale content. This page is confidentiality: user attribute in, org slice out, two trees never mixed.</p></div>
+      ${say("Looker passes the employee short-id into a warehouse mapping function. The mapping lives in the hub. Spokes remote-import it. They do not copy a second org tree. A dashboard filter someone can clear is not RLS.")}
       <div class="mmap">
         <div class="mmap-root">Looker user attribute (short id)
           <span>Warehouse mapping function · date bounds from the explore · no client-side “show all”</span>
@@ -816,15 +922,373 @@ const COPY = {
             </ul>
           </div>
         </div>
-        <div class="mmap-share"><b>Do not mix the trees.</b> Org leaders ≠ finance rollup. Token explore uses the same RLS and the same cost-center join. It does not join to weekly spend (grain mismatch).</div>
-      </div>`,
-    gws: () => `
-      <div class="hero"><h2>Google Workspace on the same org spine.</h2>
-      <p>Same OurYahoo instance. Meet, Drive, Gmail, Chat, Calendar on an employee-daily hierarchy. License optimization is unused seats — same shelfware idea, different product.</p></div>
-      ${say("Activity joins the employee spine on email + date. Org filters are L2 / L3 / L4 on that spine — not a second copy of the company.")}
+        <div class="mmap-share"><b>Do not mix the trees.</b> Org leaders ≠ finance rollup. Token explore uses the same RLS and the same cost-center join. It does not join to weekly spend (grain mismatch). Hub holds the mapping. A spoke that pastes its own version fails review.</div>
+      </div>
       ${cards([
-        {h:"What I modeled", html:"<ul><li>User-day grain vs org-day grain — two explores, not one mash</li><li>Meet / Drive / Gmail / Chat / Calendar features</li><li>Dormant and reclaim-candidate flags</li><li>Adoption = active ÷ licensed, not vanity actives</li></ul>"},
-        {h:"Confidentiality", html:"<p>Explore extension applies L2–L4 conditions in sql_always_where. Managers see their slice. Tenant rollups stay at org-day so headcount does not fan out.</p>", p:true}
+        {h:"IIQ vs this", html:"<p>IIQ is the group that may open Looker. <button type=\"button\" class=\"inline-go\" data-go-p=\"enable\" data-go-s=\"iiq\">Self-serve · IIQ</button>. RLS is which rows survive after they are in.</p>"},
+        {h:"Estate vs this", html:"<p>Estate 360 is inventory: stale, ghost, long query. <button type=\"button\" class=\"inline-go\" data-go-p=\"pipeline\" data-go-s=\"pull\">Estate 360</button>. A manager can see a stale dashboard that is still only their org slice.</p>", p:true}
+      ])}`,
+    viz: () => `
+      <div class="hero"><h2>They build the visualization. I certify the field.</h2></div>
+      ${say("Self-serve died when every chart needed a ticket. It lives when the explore is labeled, plumbed fields are hidden, and office hours exist.")}
+      ${cards([
+        {h:"What users get", html:"<ul><li>Explores they can trust</li><li>Group labels a person can scan</li><li>Drills that stay on grain</li></ul>"},
+        {h:"What I refuse", html:"<p>Unlabeled fields in an explore that chat or a new analyst will touch. Finance revenue that only exists in one tool.</p>", p:true}
+      ])}`
+  },
+  tableau: {
+    did: () => `
+      <div class="hero"><h2>Tableau · same six years, same COE.</h2></div>
+      ${say("Looker did not replace Tableau. I ran both. Each tool does the job it is good at.")}
+      ${cards([
+        {h:"What I did", html:"<ul><li>Tableau Server → Cloud. That lane is mine from 2024</li><li>Prep for messy files and heavy transforms before they hit a dashboard</li><li>Dashboards: parameters, actions, extracts vs live, certified sources</li><li>Virtual connections. Pulse only on certified data</li><li>Training next to Looker — same office hours</li></ul>"},
+        {h:"Before I query", html:"<p>Scan the datasource first: required filters, date grain, extract freshness. Skip that and the number looks fine and is wrong.</p>", p:true}
+      ])}`,
+    gov: () => `
+      <div class="hero"><h2>Tableau consumes the semantic layer. It is not a second warehouse.</h2></div>
+      ${cards([
+        {h:"Cross-check", html:"<p>Finance lives in both tools. Same revenue / rollup skill: Looker next to Tableau, flag the gap, name the grain. They run it — not a week of export. <button type=\"button\" class=\"inline-go\" data-go-p=\"ai\" data-go-s=\"skills\">Finance skills</button></p>"},
+        {h:"Fit", html:"<p>Power BI vs Databricks SQL vs Genie will disagree the same three ways.</p>", p:true}
+      ])}`
+  },
+  enable: {
+    iiq: () => `
+      <div class="hero"><h2>Onboard through IIQ. Not through my inbox.</h2>
+      <p>A team asks on a form. Identity governance creates the group membership. Looker and Tableau inherit it. I do not click “add user.”</p></div>
+      ${say("Security is who got in, who approved it, and whether they still need it. A Slack DM is not an audit trail.")}
+      <div class="lane"><h4>Joiner</h4>
+        <div class="row">
+          <div class="nodeb grey">Intake form<span>Instance · role · owner</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">IIQ<span>Manager approval</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">Group<span>Viewer or builder</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">Tool<span>Looker · Tableau</span></div>
+        </div>
+      </div>
+      <table class="art">
+        <thead><tr><th>What the org needs</th><th>How we run it</th></tr></thead>
+        <tbody>
+          <tr><td>Who has access</td><td>IIQ group membership. Not a COE spreadsheet. Not a shared login.</td></tr>
+          <tr><td>Who approved it</td><td>Manager (and owner) in the identity request. Timestamped.</td></tr>
+          <tr><td>Least privilege</td><td>Viewer vs builder on the form. After they are in, <button type="button" class="inline-go" data-go-p="looker" data-go-s="rls">RLS</button> still slices the row.</td></tr>
+          <tr><td>Mover / leaver</td><td>Group follows the job. HR offboarding drops the group. Access dies with the person.</td></tr>
+          <tr><td>Recertify</td><td>Periodic access review. Stale builder seats get pulled, same as shelfware.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I refuse", html:"<ul><li>Add them from Slack so they can “just look”</li><li>A local account the identity platform does not know</li><li>Builder by default because asking again is awkward</li><li>Keeping access in my head or a private sheet</li></ul>"},
+        {h:"Audit-ready", html:"<p>An examiner or security review can ask: who is in this project, who signed, when, and what role. The answer is IIQ plus the tool’s groups — not a reconstruction after the fact.</p>", p:true}
+      ])}`,
+    small: () => `
+      <div class="hero"><h2>A small COE covers the enterprise if self-serve is real.</h2></div>
+      ${say("If the next request still needs me in the chair, I built a dependency. If an analyst can do it — and got in through IIQ — I built a COE.")}
+      ${cards([
+        {h:"How work arrives", html:"<ul><li>Intake form, not Slack DMs</li><li>IIQ groups, not manual accounts</li><li>Viewer vs builder is a decision, not a favor</li></ul>"},
+        {h:"How work leaves", html:"<ul><li>A template the next team copies</li><li>Office hours in the open</li><li>Guides a non-engineer can follow</li></ul>", p:true}
+      ])}`,
+    train: () => `
+      <div class="hero"><h2>Train the org. Then get out of the way.</h2>
+      <p>Looker and Tableau sessions. Interactive office hours. LookML best-practice guides. 20–30 business teams.</p></div>
+      ${say("Access first, then the room. I would rather sit twice with Finance than take their reporting as a permanent ticket queue. New teams get a human. CTO work still ships the same week.")}
+      ${cards([
+        {h:"Weekly office hours", html:"<ul><li>Looker and Tableau in the same room</li><li>Where to go, how to ask, when not to mix grain</li><li>When to use Looker vs Tableau vs Power BI</li></ul>"},
+        {h:"New customers + our load", html:"<p>IIQ is done before the first workshop. Landing page so they are not lost. Hand-hold the first dashboards. Onboarding is not an excuse to stall the CTO queue.</p>", p:true}
+      ])}`
+  },
+  semantic: {
+    hub: () => `
+      <div class="hero"><h2>Certified once. Looker, Tableau, Power BI, and chat hit the same field.</h2>
+      <p>This chapter is the contract. The LookML pattern — hub project, remote import, extends — lives under Looker. Do not mix the two.</p></div>
+      ${say("If Finance revenue is certified here, a Tableau extract and a Looker explore and a chat answer must agree. That is not the same as a spoke git importing a hub git.")}
+      <div class="lane"><h4>The contract</h4>
+        <div class="row">
+          <div class="nodeb grey">Data<span>Keys. Tests. Readable names.</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">Semantic<span>Certified metrics</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">Viz<span>Looker · Tableau · Power BI</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">Talk<span>Chat / MCP / Genie</span></div>
+        </div>
+      </div>
+      ${cards([
+        {h:"Looker hub-and-spoke", html:"<p>How one domain’s LookML is reused by other repos. Open <button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"hub\">Looker · Hub and spoke</button>.</p>"},
+        {h:"Talk lives under AI", html:"<p>Chat hits these same certified fields. Open <button type=\"button\" class=\"inline-go\" data-go-p=\"ai\" data-go-s=\"talk\">Chat on certified fields</button>.</p>", p:true}
+      ])}`
+  },
+  oracle: {
+    mods: () => `
+      <div class="hero"><h2>One connector. Modules inside — not a tile per system.</h2>
+      <p>Planning first. Then Fusion on the same auth pattern. The user does not install three tools to ask one finance question.</p></div>
+      ${say("Identity is not authorization. A valid login with no access to that module gets 403 from the native app.")}
+      <table class="art">
+        <thead><tr><th>Module</th><th>What a person can ask</th></tr></thead>
+        <tbody>
+          <tr><td>EPM Planning</td><td>Plan, forecast, dimensional planning data — user’s own security.</td></tr>
+          <tr><td>General Ledger</td><td>Journals, batches, lines, ledgers, balances.</td></tr>
+          <tr><td>Supplier</td><td>Vendor master, contacts, addresses, classifications.</td></tr>
+          <tr><td>CLM</td><td>Contract headers, parties, documents.</td></tr>
+        </tbody>
+      </table>
+      ${cards([{h:"v1 lesson", html:"<p>Dumping the full API schema crashed the session. Schema-first: a routing brief + a small field list per module. Specialists edit JSON. Server code stays still. <button type=\"button\" class=\"inline-go\" data-go-p=\"ai\" data-go-s=\"agent\">Agentic path</button> is this router, chained.</p>"},{h:"Same modules in Looker Finance", html:"<p>GL, AP, AR, assets, procurement — those names are also LookML models on the Finance instance (warehouse vs live ERP). MCP lists them, then we refactor. Fusion MCP is the live app. Different room. Same map. <button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"fin\">Finance instance</button></p>", p:true}])}`,
+    route: () => `
+      <div class="hero"><h2>Route on the words in the question.</h2>
+      <p>From the Fusion domain brief I wrote. The same English word means different resources. Guessing is how you get a confident wrong answer.</p></div>
+      <table class="art">
+        <thead><tr><th>They say</th><th>Module</th></tr></thead>
+        <tbody>
+          <tr><td>supplier, vendor, remit-to</td><td>Supplier</td></tr>
+          <tr><td>journal, ledger, posting, period</td><td>GL</td></tr>
+          <tr><td>contract, agreement, clause</td><td>CLM</td></tr>
+          <tr><td>plan, forecast, entity, scenario</td><td>Planning</td></tr>
+        </tbody>
+      </table>
+      ${say("Unity Catalog + Genie is the same idea: certified objects, instructions, do not let the model pick any table.")}`
+  },
+  ai: {
+    scale: () => `
+      <div class="hero"><h2>A small COE covers an enterprise when the repeat work is a skill, not a hero.</h2>
+      <p>At Yahoo I sit with Looker and Tableau engineering the same way I sit with the business: I take the requirement, we land a certified grain, then I put the procedure in git so the next person — and the cheap model — do not start from zero.</p></div>
+      ${say("This is forward-deployed work. I sit with engineering. I ship the last mile. I leave a skill they clone. I write the LookML and the skill that writes the LookML. They keep the pipeline. I keep the number honest.")}
+      <table class="art">
+        <thead><tr><th>They need</th><th>What I add with AI</th></tr></thead>
+        <tbody>
+          <tr><td>Looker / Tableau engineers shipping models</td><td>Skills they clone once. Finance revenue / consolidation check is the same library.</td></tr>
+          <tr><td>A four-person COE, 20–30 teams</td><td>One chat ≈ one ticket. Office hours still happen. CTO work still ships. The agent does the paste, not the grain.</td></tr>
+          <tr><td>Finance / product asking in English</td><td>Chat only after the field is labeled. Same contract I already run on MCP — same one Viking wants on Genie.</td></tr>
+          <tr><td>A bill that does not become the project</td><td>Cheap model for Jira and Slack. Expensive model once, when two tools disagree.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I do not pretend", html:"<p>I do not own their warehouse jobs. I bring the grain, sit in the review, and leave a skill so the next engineer is not waiting on me.</p>"},
+        {h:"What Viking feels", html:"<p>A BI architect who already works forward-deployed: embed with the team, certify the grain, then put AI on it. Not a dashboard shop. Not a prompt tourist.</p>", p:true}
+      ])}`,
+    skills: () => `
+      <div class="hero"><h2>Finance lives in Looker and Tableau. The skill makes the two numbers one.</h2>
+      <p>Revenue, period close, cost rollups — heavy users in both tools. Consolidation used to mean weeks of export, compare, argue. The procedure is now a skill they run themselves.</p></div>
+      ${say("Hours, not weeks. Same grain every time. More reliable because nobody rebuilds the check from a laptop dump.")}
+      <table class="art">
+        <thead><tr><th>Then</th><th>Now</th></tr></thead>
+        <tbody>
+          <tr><td>Export Looker. Export Tableau. Reconcile in a sheet. Wait on COE.</td><td>One skill: same metric, same dates, both tools. Variance named (grain, extract, join).</td></tr>
+          <tr><td>Weeks to trust a close / revenue pack</td><td>At their fingertips in the chat they already use. COE is the exception, not the queue.</td></tr>
+          <tr><td>Each analyst’s private SQL</td><td>Certified fields in the hub. Spoke extends. No forked revenue.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What the skill does", html:"<ul><li>Revenue and consolidation metrics on a named grain</li><li>Looker and Tableau side by side</li><li>Flag if they disagree — then say why</li><li>Tableau scan first: filter, date, extract freshness</li></ul>"},
+        {h:"What Finance feels", html:"<p>They close the loop without waiting a sprint. The number is the same one leadership already sees. I did not become their full-time reconciler. I left the check.</p>", p:true}
+      ])}
+      ${cards([
+        {h:"Engineering still clones this", html:"<p>Right explore. Label before chat. Same metric in two tools. Format the view. One chat ≈ one ticket. The customer skill and the engineer skill are the same library.</p>"}
+      ])}`,
+    agent: () => `
+      <div class="hero"><h2>MCP today is a tool. Agentic is the same contract, chained.</h2>
+      <p>A person still signs the number. The agent runs the boring path: right explore, both tools, named variance, draft the note. It does not close the books unsupervised.</p></div>
+      ${say("Scale the experience, not the guess. Skills in git. MCP with LIMIT. Then an agent that calls those skills in order — the human is the gate, not the typist.")}
+      <div class="lane"><h4>From one call to a chain</h4>
+        <div class="row">
+          <div class="nodeb grey">Skill<span>One procedure</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">MCP<span>Named fields · LIMIT</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">Agent<span>Scope → validate → draft</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">Human<span>Signs the number</span></div>
+        </div>
+      </div>
+      <table class="art">
+        <thead><tr><th>Now (in production)</th><th>Agentic we are scaling to</th></tr></thead>
+        <tbody>
+          <tr><td>You type. One skill. One MCP call.</td><td>Agent picks the skill, runs Looker then Tableau, flags the gap, drafts Jira / Slack on the ticket key.</td></tr>
+          <tr><td>Oracle: route the English word to Planning, GL, Supplier, contract.</td><td>Same router, then a second step: “show the journal” only after the module is sure.</td></tr>
+          <tr><td>IIQ still decides who may ask.</td><td>The agent inherits that identity. No extra door.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I will not ship", html:"<ul><li>An agent that posts a revenue number with no human</li><li>SELECT * so the model can “explore”</li><li>A second copy of Finance skills per team</li></ul>"},
+        {h:"What Viking hears", html:"<p>Genie / agents on a certified layer is this path: procedure first, then chain, then a person. Not a chatbot on a warehouse dump.</p>", p:true}
+      ])}`,
+    cost: () => `
+      <div class="hero"><h2>Cheap for paste. Expensive only when the number can be wrong.</h2>
+      <p>Overage is tokens, not seats. I measure that for the org. I run my own work the same way so I am not the bill.</p></div>
+      ${say("If you are not sure, use the expensive model for one decision. Then the cheap model for the repetition.")}
+      <table class="art">
+        <thead><tr><th>Job</th><th>Which tool</th></tr></thead>
+        <tbody>
+          <tr><td>Paste a Jira or Slack comment already drafted</td><td>Cheap model</td></tr>
+          <tr><td>Read a log, confirm a file saved</td><td>Cheap model</td></tr>
+          <tr><td>Metric grain, a join, why two tools disagree</td><td>Expensive model — once</td></tr>
+          <tr><td>git status, grep, copy, lint</td><td>No model. Terminal.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I refuse", html:"<ul><li>Dump the warehouse into the model</li><li>Forty-turn chats as memory</li><li>Expensive model to post a Jira comment</li><li>SELECT * to “explore”</li></ul>"},
+        {h:"What the team gets", html:"<p>More tickets close. Fresh chat. LIMIT. The expensive model is for grain — not for rewriting the same Slack sentence.</p>", p:true}
+      ])}`,
+    spend: () => `
+      <div class="hero"><h2>Ingest every vendor. One weekly grain. Then act.</h2>
+      <p>Looker. Vendor feeds land in the warehouse. Certified seats vs overage vs tokens — weekly.</p></div>
+      ${say("Seats are the first AI cost line. Tokens are the second. A licensed seat with no work is waste. I measure it. I also run my own work the same way: cheap model for paste, expensive model for grain.")}
+      <div class="mmap-steps" style="margin-bottom:14px">
+        <b>Vendor feeds</b><b>Weekly snapshot</b><b>Committed vs overage</b><b>Tokens by model</b><b>Shelfware persona</b><b>Chargeback</b>
+      </div>
+      ${cards([
+        {h:"What I ingested", html:"<ul><li>Flat-seat apps (no usage split)</li><li>Seat + overage tools</li><li>API / token consumption</li><li>Code/IDE usage on the variable line</li></ul>"},
+        {h:"KPIs I wrote", html:"<ul><li>Committed seat spend vs overage &amp; usage (they add to total)</li><li>Overage % of spend and of people</li><li>Has overage flag — who is past the seat</li><li>Tool breadth — how many apps on one person’s bill</li><li>Tokens by model (cache vs net-new) — why the overage happened</li></ul>", p:true}
+      ])}
+      ${cards([
+        {h:"Shelfware", html:"<p>Persona on the license: pending, zero use, low use, active, champion. Reclaim the first three. Do not average them into “adoption.”</p>"},
+        {h:"Cadence guards", html:"<p>Weekly explore defaults to last completed week. Monthly snapshot explore is locked to monthly grain. Weeks must not sum into a fake month. Token explore is not joined to the spend explore — different grain would fan out dollars.</p>"}
+      ])}
+      ${cards([
+        {h:"Rules I put in git", html:"<ul><li>Skills before improvising</li><li>MCP: schema → fields → LIMIT</li><li>One chat ≈ one ticket</li><li>Cheap model for paste; expensive model for grain</li><li>No MCP footers on Slack / Jira</li></ul>"},
+        {h:"Why it cut cost", html:"<p>Overage is tokens, not seats. Local semantic rules (tiers, LIMIT, fresh chat) stop the agent from being the overage. The Looker model shows managers where the bill actually moved.</p>", p:true}
+      ])}`,
+    talk: () => `
+      <div class="hero"><h2>The semantic layer was built for conversation — years before the chat UI.</h2></div>
+      ${say("Unlabeled fields are how a chat tool guesses. I formatted the layer so today’s in-product chat and MCP hit the same certified fields the dashboards use.")}
+      ${cards([
+        {h:"Then", html:"<p>Analysts build dashboards and get quick insights without a ticket.</p>"},
+        {h:"Now", html:"<p>Chat YAML from a persona plus golden questions. MCP on the same explores. Same number.</p>", p:true}
+      ])}`
+  },
+  pipeline: {
+    pull: () => `
+      <div class="hero"><h2>Estate 360 · can leadership see the inventory?</h2>
+      <p>Stale dashboards. Ghost logins. Queries that never finish. This is the footprint — not who is allowed to see a row.</p></div>
+      ${say("Who gets in is IIQ. Which rows they see is RLS under Looker. Which seats waste money is Org AI cost. This page is only: what exists, is it used, is it honest grain.")}
+      ${cards([
+        {h:"What the org sees", html:"<ul><li>Stale — published, unused, still sitting on a license and a warehouse slot</li><li>Ghost — account exists, no work</li><li>Long queries — named, not a mystery fire</li></ul>"},
+        {h:"What we do next", html:"<p>Office hours. Sit with the team on the error. Help them write Looker and Tableau the right way. Git. Certified fields. Not a shame PDF.</p>", p:true}
+      ])}
+      <div class="lane"><h4>One refresh</h4>
+        <div class="row">
+          <div class="nodeb grey">Org hierarchy</div>
+          <div class="arrow">+</div>
+          <div class="nodeb blue">Looker × 6<span>parallel pull</span></div>
+          <div class="arrow">+</div>
+          <div class="nodeb pink">Tableau</div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">Freeze grain</div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">Two consoles</div>
+        </div>
+      </div>
+      ${cards([
+        {h:"Grain", html:"<ul><li>History is fact. Inventory is now.</li><li>Org-unique = set-union. Never sum instances.</li><li>Month ledger freezes completed months.</li></ul>"},
+        {h:"Not this page", html:"<p><button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"rls\">RLS &amp; trees</button> — user attribute, two hierarchies, hub mapping. <button type=\"button\" class=\"inline-go\" data-go-p=\"ai\" data-go-s=\"spend\">Org AI cost</button> — seats vs overage vs tokens. Same Monday refresh can feed both. They are not the same explore.</p>", p:true}
+      ])}`
+  },
+  work: {
+    gws: () => `
+      <div class="hero"><h2>A remote company. Workspace is every Google tool they actually use — not five logos.</h2>
+      <p>Google APIs into GCP. History cleaned. Then KPIs on the employee spine: which app, how often, create vs consume, Meet quality — not a vendor PDF that says “they logged in.”</p></div>
+      ${say("Adoption is active ÷ licensed — per tool. A Gmail login is not Workspace adoption. A dormant seat is shelfware.")}
+      <table class="art">
+        <thead><tr><th>What we had to know</th><th>How the grade of usage answers</th></tr></thead>
+        <tbody>
+          <tr><td>Collab</td><td>Meet, Chat, Calendar, Gmail, Voice. Quality on Meet — not just that a meeting existed.</td></tr>
+          <tr><td>Files & authoring</td><td>Drive, Docs, Sheets, Slides, Forms, Sites. Created vs viewed. Shared inside vs outside.</td></tr>
+          <tr><td>How work actually flows</td><td>Forms in. Docs and Sheets as the work. Apps Script running in the background. Breadth: how many apps per person — not one hero product.</td></tr>
+          <tr><td>Who is missing</td><td>Licensed and silent. Licensed on Gmail only. That is not a remote company working together.</td></tr>
+        </tbody>
+      </table>
+      <div class="lane"><h4>API → warehouse → explore</h4>
+        <div class="row">
+          <div class="nodeb grey">Workspace APIs<span>Many apps. One spine.</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">GCP<span>Clean · history</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">User-day vs org-day</div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">They build</div>
+        </div>
+      </div>
+      ${cards([
+        {h:"What I modeled", html:"<ul><li>User-day vs org-day — two explores, not one mash</li><li>Adoption per app: Gmail, Drive, Docs, Sheets, Slides, Forms, Sites, Calendar, Meet, Chat, Apps Script</li><li>How many apps a person actually touches. Create vs view. Script executions — not a checkbox that Script exists</li><li>Dormant and reclaim-candidate vs licensed totals</li></ul>"},
+        {h:"Confidentiality", html:"<p>Managers see their slice on the org spine (L2–L4). Tenant rollups stay at org-day so headcount does not fan out. Same mapping as <button type=\"button\" class=\"inline-go\" data-go-p=\"looker\" data-go-s=\"rls\">Looker RLS</button>.</p>", p:true}
+      ])}`,
+    desk: () => `
+      <div class="hero"><h2>Service desk and assets. APIs in. Certified layer out.</h2>
+      <p>Jira and ServiceNow are not left in the ticket tool. We pull through APIs, massage grain in GCP, and give GSD and asset teams Looker they can keep.</p></div>
+      ${say("Joiner gets a machine. Leaver returns it. Change and certification are a record, not a hallway conversation.")}
+      <table class="art">
+        <thead><tr><th>Who</th><th>What they see</th></tr></thead>
+        <tbody>
+          <tr><td>Service desk</td><td>Chat, phone, ticket queues. Wait time. Closed vs open. Not a nightly CSV.</td></tr>
+          <tr><td>Asset management</td><td>What is assigned, in use, due for refresh. Hardware and accessory demand.</td></tr>
+          <tr><td>Joiner / leaver</td><td>Onboarding and offboarding tasks next to the HR spine. Identity in, asset out.</td></tr>
+          <tr><td>Change / certify</td><td>Asset audit so a machine is certified. Business-service change grades live on the BCP tab.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I did", html:"<p>Named the grain. Loaded through APIs. Cleaned history. Semantic layer they self-serve. I am not their ticket clerk.</p>"},
+        {h:"What I refuse", html:"<p>A private extract per manager. Mixing open tickets with the asset master on the wrong key. Counting headcount off a task table.</p>", p:true}
+      ])}`,
+    bcp: () => `
+      <div class="hero"><h2>BCP and change scoring. The workbook’s rules — as a letter the CTO already knows.</h2>
+      <p>The POC was a scoring spreadsheet: a tab per leader, then a letter. Seven ServiceNow reports to finish one change grade. Those rules went onto live business services so the room sees one org scorecard — not a restyled chart.</p></div>
+      ${say("ServiceNow is what happened. Looker is the grade. If the letter and the sheet disagree, the measure is wrong — not the exec.")}
+      <div class="lane"><h4>What replaced the sheet</h4>
+        <div class="row">
+          <div class="nodeb grey">Excel POC<span>Rules leadership already signed</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb blue">Jira + ServiceNow<span>Service · last test · change</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb purple">Certified grade<span>Same letter. Same bands.</span></div>
+          <div class="arrow">→</div>
+          <div class="nodeb green">Two scorecards<span>BCP · Change</span></div>
+        </div>
+      </div>
+      <table class="art">
+        <thead><tr><th>What they ask about a service</th><th>How the BCP letter answers</th></tr></thead>
+        <tbody>
+          <tr><td>Is the plan still in date?</td><td>Current earns. Expired costs.</td></tr>
+          <tr><td>Did they actually test?</td><td>A full drill is the top. Fail, no plan, or a paper skip is not. Partial / process / not-tested sit in the middle — they are not a free A.</td></tr>
+          <tr><td>Were they allowed to skip?</td><td>The reason still grades. Client-asked, onboarding, re-architecture, and revenue/SLA risk are not the same letter as “we have no BCP.” A blank exemption is not a gift.</td></tr>
+          <tr><td>How critical is it? Any single point of failure?</td><td>A top-tier service with a known risk or a single point of failure is punished. A lower-tier service can recover points.</td></tr>
+          <tr><td>What do they see on the wall?</td><td>One letter per live service — latest test only, retired CIs out. Filter the company the way they already think (L2–L5). Colored A+ through F. Nothing reads better than a perfect score.</td></tr>
+        </tbody>
+      </table>
+      <table class="art">
+        <thead><tr><th>What they ask about a change</th><th>How the change letter answers</th></tr></thead>
+        <tbody>
+          <tr><td>Did it land?</td><td>Success is most of the grade.</td></tr>
+          <tr><td>Did it hurt production?</td><td>Incidents, cancels, and escalations count against you. A high rate is a worse letter.</td></tr>
+          <tr><td>Was it automated?</td><td>Headless / pipeline changes earn. Jira-on-the-change is still counted; it left the overall weight when the rule changed.</td></tr>
+          <tr><td>Who owns the grade?</td><td>One letter per live business service on its change board. Finished tickets only — not a seven-report pack per leader.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What had to be right", html:"<ul><li>The exemption list moved (onboarding, re-architecture, revenue/SLA risk) — the letter had to follow the business, not the first sheet</li><li>A blank exemption must not invent an A</li><li>Wrong join on last test or owning board doubles a service and the org looks healthier than it is</li><li>Tickets as they changed the formula. The dashboard kept the same letter.</li></ul>"},
+        {h:"What they commended", html:"<p>They recognized their own rules on operational data — a grade they already understood. I did not restyle the ticket. I certified the arithmetic.</p>", p:true}
+      ])}`,
+    pmo: () => `
+      <div class="hero"><h2>Jira for every PMO office. Plans and sprints, not a status meeting.</h2>
+      <p>Same API path. Issues, plans, sprint usage land in GCP. Program offices query Looker instead of rebuilding the board in a sheet.</p></div>
+      ${say("Find the sprint. See what moved. See what is stuck. One grain across PMO — not a different export per office.")}
+      ${cards([
+        {h:"What they get", html:"<ul><li>Roadmaps and plans they already run in Jira</li><li>Sprint and usage so capacity is visible</li><li>The same ticket key the COE uses — LOOKER-XXXX is our world; theirs is their project</li></ul>"},
+        {h:"What I leave", html:"<p>Certified explores. They build the next view. Office hours when the join is wrong. Not a weekly pack I refresh by hand.</p>", p:true}
+      ])}`,
+    sec: () => `
+      <div class="hero"><h2>Security bugs on the org spine. Severity sets the clock.</h2>
+      <p>Corporate security finds the issues. The business owns the due date. We helped them see every open bug — by severity — on the org leader, not in five ticket tools.</p></div>
+      ${say("A high-severity bug that sits with no owner is not a dashboard problem. It is an accountability problem. Looker made the queue visible on the same org map as the rest of Workplace.")}
+      <table class="art">
+        <thead><tr><th>What they asked</th><th>How the room answers</th></tr></thead>
+        <tbody>
+          <tr><td>Where does the bug live?</td><td>ServiceNow, helpdesk, legal, Jira — pulled, cleaned, mapped to the org and the org leader. One row is one issue on one custodian.</td></tr>
+          <tr><td>Who must close it, and by when?</td><td>Severity sets the SLA. The leader sees open vs closed, aging vs due. Escalation is a named backlog — not a hallway.</td></tr>
+          <tr><td>Is the security team efficient?</td><td>Volume, time to validate, time to close — for the security org. Separate from whether a business unit is actually remediating.</td></tr>
+        </tbody>
+      </table>
+      ${cards([
+        {h:"What I did", html:"<p>Pipelines into the warehouse. Grain that does not double a ticket across systems. Semantic layer they self-serve. I am not in their incident queue.</p>"},
+        {h:"What I refuse", html:"<p>A private extract per director. Mixing security-team throughput with BU accountability on the wrong key. A login count that pretends the bug is closed.</p>", p:true}
       ])}`
   },
   execute: {
@@ -834,11 +1298,9 @@ const COPY = {
       ${say("A small COE splits by lane. Same playbook. Different last mile.")}
       <div class="stat-strip">
         <div><b>~1,200</b><span>LOOKER + TABLEAU stories</span></div>
-        <div><b>~98%</b><span>Looker Done · 168 Tableau Done</span></div>
-        <div><b>~1,170</b><span>closed-sprint stories · 14 in flight</span></div>
-        <div><b>2–3 pts</b><span>typical story · 1,058 sized · max 8</span></div>
-        <div><b>33</b><span>Oracle MCP stories · 28 Done</span></div>
-        <div><b>~15%</b><span>of 2026 volume (33 of 216) — not the 5.6-year bulk</span></div>
+        <div><b>~98%</b><span>Looker Done</span></div>
+        <div><b>2–3 pts</b><span>typical story</span></div>
+        <div><b>33</b><span>Oracle MCP stories in 2026</span></div>
       </div>
       <div class="mmap">
         <div class="mmap-root">Ticket grammar · instance · domain · numbered step
@@ -847,7 +1309,7 @@ const COPY = {
         <div class="mmap-steps">
           <b>2.1 connection</b><b>2.2 project</b><b>2.3 git / PR</b><b>2.4 model</b><b>2.5 explore</b><b>2.6 groups &amp; folders</b><b>3.x dashboard</b>
         </div>
-        <div class="mmap-share"><b>Oracle MCP</b> is the 2026 conversational chapter (Planning + Fusion connectors) — 33 stories, not a thousand. The 5.6-year load is Looker platform + Tableau Cloud, shared on Looker with a peer.</div>
+        <div class="mmap-share"><b>Oracle MCP</b> is the 2026 chat chapter (Planning + Fusion connectors) — 33 stories, not a thousand. The 5.6-year load is Looker platform + Tableau Cloud, shared on Looker with a peer.</div>
         <div class="mmap-split">
           <div class="mmap-col">
             <h3>My lane</h3>
@@ -892,7 +1354,7 @@ const COPY = {
         </tbody>
       </table>
       <div class="pre">git checkout -b LOOKER-XXXX-short-description
-<span class="c"># never git add .</span>
+<span class="c">never git add .</span>
 git add path/to/file</div>`,
     pr: () => `
       ${loopBar("git")}
@@ -930,9 +1392,9 @@ git add path/to/file</div>`,
       </div>`,
     lookml: () => `
       ${loopBar("ide")}
-      <div class="hero"><h2>LookML ships from the IDE. Everything else is tracked around it.</h2>
-      <p>The validator is the gate. Terminal git never pushes Looker. Jira and Slack still see every move — comments on the IDE PR, ticket updated, channel posted.</p></div>
-      ${say("Prepare locally. Paste into the Looker IDE. Validate. The IDE creates the PR. I add the review comments and close Jira.")}
+      <div class="hero"><h2>LookML ships from the IDE. Review is how we refuse a fork.</h2>
+      <p>The validator is the gate. Spoke remote-imports the hub, then extends. Archive dead views. Terminal git never pushes Looker.</p></div>
+      ${say("Prepare locally. Paste into the Looker IDE. Validate. The IDE creates the PR. I ask: import + extend, or a pasted copy? Model in the hub fails. Then close Jira.")}
       <ol class="seq">
         <li><b>Local</b> — LookML in an OUTPUT folder. Lint against the skills. Ticket on the branch name.</li>
         <li><b>Looker IDE</b> — paste, Validate LookML. Failures stay off git.</li>
@@ -954,9 +1416,9 @@ git add path/to/file</div>`,
       <p>Workplace connectors are a 2026 sample. The years of work are semantic, engineering, and AI that orgs can live with — not a demo, not a ticket pile.</p></div>
       ${say("I do not scale by answering more tickets. I scale by putting the procedure in git so the next person — and the next org — get the same quality.")}
       ${cards([
-        {h:"Semantic", html:"<p>LookML and Tableau so a domain can build viz on a governed grain. Hub and spoke. RLS on the tree they actually use. Users build; COE holds the contract.</p>"},
-        {h:"Engineering", html:"<p>Connections, git remotes, estate inventory, Monday refresh, license hygiene. Production means it survives the next person joining the team.</p>", p:true},
-        {h:"AI", html:"<p>Conversation sits on that layer. Oracle modules and MCP are how finance talks to Planning and Fusion — after the semantic layer held, not instead of it.</p>"}
+        {h:"Semantic", html:"<p>LookML and Tableau on a governed grain. Hub-and-spoke is Looker git. RLS is the row, not the inventory. Users build; COE holds the contract.</p>"},
+        {h:"Engineering", html:"<p>Connections, git remotes, <button type=\"button\" class=\"inline-go\" data-go-p=\"pipeline\" data-go-s=\"pull\">Estate 360</button> Monday refresh, license hygiene. Production means it survives the next person joining the team.</p>", p:true},
+        {h:"AI", html:"<p>Conversation sits on that layer. Skills, org AI bill, chat, MCP, and Oracle modules live in one chapter — after the semantic layer held, not instead of it. <button type=\"button\" class=\"inline-go\" data-go-p=\"ai\" data-go-s=\"scale\">How we use AI</button>.</p>"}
       ], 3)}
       <table class="art" style="margin-top:14px">
         <thead><tr><th>How production is packaged</th><th>What the org gets</th></tr></thead>
@@ -1015,8 +1477,8 @@ function archBlock(which) {
       <button type="button" class="${which==="dock"?"on":""}" data-go-p="arch" data-go-s="dock">5 · Docker</button>
     </div>`;
   const views = {
-    v1: `<div class="hero"><h2>Local v1 · OAuth 2.0 PKCE</h2>
-      <p>No client secret on the laptop. No token on disk. Public client + PKCE. Enterprise SSO/MFA. Oracle still owns authorization.</p></div>
+    v1: `<div class="hero"><h2>Yahoo MCP · local v1 · OAuth 2.0 PKCE</h2>
+      <p>How engineering at Yahoo got Planning (then Fusion) into Cursor and Claude Desktop. No client secret on the laptop. No token on disk. Public client + PKCE. Enterprise SSO/MFA. Oracle still owns authorization.</p></div>
       ${say("PKCE exists so a public client can get a token without storing a secret. Identity is not authorization.")}
       <img class="arch-img" src="arch-local-infographic.jpg" alt="PKCE architecture: local MCP, SSO/MFA, Oracle Identity Domain, EPM Planning" />
       <p class="arch-cap">Laptop MCP · volatile RAM token · 60-minute session · two-layer control (OCI scopes + native EPM) · zero-touch git install.</p>
@@ -1041,11 +1503,11 @@ function archBlock(which) {
       <p>From the setup guide I wrote. Builders get one command. Locked laptops get a package. Same engine.</p></div>
       ${say("A 20-step notepad install fails on Finance Windows. Setup is a product.")}
       ${cards([
-        {h:"Who it was for", html:"<p>People with local admin and git. Everyone else: Software Center / packaging — no admin, same server.</p>"},
+        {h:"Who it was for", html:"<p>People with local admin and git. Everyone else: a packaged install — no admin, same server.</p>"},
         {h:"One command", html:"<p>Mac: clone or pull, then <code>setup.sh</code>. Windows: same with <code>setup.ps1</code>. Wires Cursor and Claude Desktop. Restart the app.</p>", p:true}
       ])}
       <ol class="seq">
-        <li><b>Code from regulated git</b> — users do not hand-edit the connection logic.</li>
+        <li><b>Code from private git</b> — users do not hand-edit the connection logic.</li>
         <li><b>First prompt</b> — “list configured environments.” Browser opens.</li>
         <li><b>Localhost TLS warning</b> — expected. Self-signed cert for the OAuth callback on localhost. Proceed, then SSO / MFA.</li>
         <li><b>Back in the IDE</b> — environments list. Token in RAM. 60 minutes. Silent refresh.</li>
@@ -1075,21 +1537,88 @@ function archBlock(which) {
 }
 
 let proj = "arc", skill = "graph";
+let findHits = [];
+let findSel = 0;
+
+function go(p, s) {
+  proj = p;
+  skill = s;
+  closeFind();
+  render();
+}
+
+function findCatalog() {
+  const out = [];
+  Object.keys(TABS).forEach(p => {
+    TABS[p].forEach(([s, title]) => {
+      const k = p + "/" + s;
+      out.push({
+        p, s,
+        ch: LABELS[p] || p,
+        title,
+        why: FIND_WHY[k] || "",
+        hay: (title + " " + (LABELS[p] || "") + " " + (FIND_KEYS[k] || "") + " " + (FIND_WHY[k] || "")).toLowerCase()
+      });
+    });
+  });
+  return out;
+}
+
+function paintFind(q) {
+  const needle = (q || "").trim().toLowerCase();
+  const cat = findCatalog();
+  findHits = needle ? cat.filter(r => r.hay.indexOf(needle) !== -1) : cat.filter(r => r.why);
+  findSel = 0;
+  const box = document.getElementById("find-list");
+  if (!findHits.length) {
+    box.innerHTML = "<div class='find-empty'>No page for that. Try finance, rls, bcp, workspace.</div>";
+    return;
+  }
+  box.innerHTML = findHits.map((r, i) =>
+    "<button type='button' class='find-hit" + (i === 0 ? " on" : "") + "' data-i='" + i + "'>" +
+      "<span class='ch'>" + r.ch + "</span>" +
+      "<span class='ti'>" + r.title + "</span>" +
+      (r.why ? "<span class='wh'>" + r.why + "</span>" : "") +
+    "</button>"
+  ).join("");
+}
+
+function openFind() {
+  document.getElementById("find").classList.add("on");
+  document.getElementById("find-chips").innerHTML = FIND_CHIPS.map(c =>
+    "<button type='button' data-chip='" + c + "'>" + c + "</button>"
+  ).join("");
+  const q = document.getElementById("find-q");
+  q.value = "";
+  paintFind("");
+  q.focus();
+}
+
+function closeFind() {
+  document.getElementById("find").classList.remove("on");
+}
+
+function findJump(i) {
+  const r = findHits[i];
+  if (!r) return;
+  go(r.p, r.s);
+}
 
 function renderTabs() {
   const tabs = TABS[proj];
   document.getElementById("tabs").innerHTML = tabs.map(([id, label]) =>
-    `<button type="button" data-skill="${id}" class="${id===skill?"active":""}">${label}</button>`
+    "<button type=\"button\" data-skill=\"" + id + "\" class=\"" + (id===skill ? "active" : "") + "\">" + label + "</button>"
   ).join("");
 }
 
 function render() {
+  try {
   const tabs = TABS[proj];
   if (!tabs.find(([id]) => id === skill)) skill = tabs[0][0];
-  document.getElementById("crumb-p").textContent = LABELS[proj];
+  document.getElementById("crumb-p").textContent = LABELS[proj] || proj;
   document.getElementById("crumb-s").textContent = (tabs.find(([id]) => id === skill) || ["",""])[1];
   document.querySelectorAll(".inst-btn").forEach(b => {
-    const siblings = document.querySelectorAll(`.inst-btn[data-proj="${b.dataset.proj}"]`);
+    const siblings = document.querySelectorAll(".inst-btn[data-proj=\"" + b.dataset.proj + "\"]");
     const unique = siblings.length === 1;
     const on = b.dataset.proj === proj && (unique || b.dataset.skill === skill);
     b.classList.toggle("active", on);
@@ -1097,27 +1626,68 @@ function render() {
   renderTabs();
   const block = COPY[proj][skill];
   document.getElementById("stage").innerHTML = typeof block === "function" ? block() : block;
+  } catch (err) {
+    document.getElementById("stage").innerHTML = "<div class='lede'><b>Render failed.</b> " + err.message + "</div>";
+  }
 }
 
 document.querySelector("aside.sidebar").addEventListener("click", e => {
   const b = e.target.closest(".inst-btn");
   if (!b) return;
-  proj = b.dataset.proj;
-  skill = b.dataset.skill || TABS[proj][0][0];
-  render();
+  go(b.dataset.proj, b.dataset.skill || TABS[b.dataset.proj][0][0]);
 });
 document.getElementById("tabs").addEventListener("click", e => {
   const b = e.target.closest("button[data-skill]");
   if (!b) return;
-  skill = b.dataset.skill;
-  render();
+  go(proj, b.dataset.skill);
 });
 document.getElementById("stage").addEventListener("click", e => {
   const c = e.target.closest("[data-go-p]");
   if (!c) return;
-  proj = c.dataset.goP;
-  skill = c.dataset.goS;
-  render();
+  go(c.dataset.goP, c.dataset.goS);
+});
+document.getElementById("find-open").addEventListener("click", openFind);
+document.getElementById("print-open").addEventListener("click", () => window.print());
+document.getElementById("find-scrim").addEventListener("click", closeFind);
+document.getElementById("find-q").addEventListener("input", e => paintFind(e.target.value));
+document.getElementById("find-q").addEventListener("keydown", e => {
+  if (e.key === "Escape") { closeFind(); return; }
+  if (!findHits.length) return;
+  if (e.key === "ArrowDown") { e.preventDefault(); findSel = Math.min(findSel + 1, findHits.length - 1); }
+  if (e.key === "ArrowUp") { e.preventDefault(); findSel = Math.max(findSel - 1, 0); }
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    document.querySelectorAll(".find-hit").forEach((b, i) => b.classList.toggle("on", i === findSel));
+    return;
+  }
+  if (e.key === "Enter") { e.preventDefault(); findJump(findSel); }
+});
+document.getElementById("find-list").addEventListener("click", e => {
+  const b = e.target.closest(".find-hit");
+  if (!b) return;
+  findJump(+b.dataset.i);
+});
+document.getElementById("find-chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-chip]");
+  if (!b) return;
+  document.getElementById("find-q").value = b.dataset.chip;
+  paintFind(b.dataset.chip);
+  document.getElementById("find-q").focus();
+});
+document.addEventListener("keydown", e => {
+  const inField = e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA";
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    openFind();
+    return;
+  }
+  if (e.key === "Escape" && document.getElementById("find").classList.contains("on")) {
+    closeFind();
+    return;
+  }
+  if (e.key === "/" && !inField && !document.getElementById("find").classList.contains("on")) {
+    e.preventDefault();
+    openFind();
+  }
 });
 render();
 </script>
