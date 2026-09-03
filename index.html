@@ -378,7 +378,6 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
   </div>
   <div class="section-label">Career</div>
   <button class="inst-btn active" data-proj="arc" data-skill="graph"><span class="dot"></span><span class="name">Career graph</span></button>
-  <button class="inst-btn" data-proj="fit" data-skill="map"><span class="dot"></span><span class="name">Employer fit</span></button>
   <button class="inst-btn" data-proj="foundation" data-skill="work"><span class="dot"></span><span class="name">Foundation</span><span class="yrs">03–16</span></button>
   <button class="inst-btn" data-proj="foundation" data-skill="bw"><span class="dot"></span><span class="name">Bridgewater</span><span class="yrs">16–17</span></button>
   <button class="inst-btn" data-proj="tableau-early" data-skill="wwe"><span class="dot"></span><span class="name">WWE</span><span class="yrs">18</span></button>
@@ -441,7 +440,7 @@ window.onerror = function (msg, src, line) {
 </script>
 <script>
 const LABELS = {
-  arc: "Timeline", fit: "Employer fit", foundation: "Foundation",
+  arc: "Timeline", foundation: "Foundation",
   pbi: "AML · Power BI",
   "tableau-early": "WWE · Warner DCU",
   migrate: "Migrate & 6 instances", looker: "Looker", tableau: "Tableau",
@@ -452,7 +451,6 @@ const LABELS = {
 };
 const TABS = {
   arc:        [["graph","Career graph"],["walk","The walk"],["years","Yahoo years"]],
-  fit:        [["map","The map"],["pbi","Power BI + Databricks"]],
   foundation: [["work","The path"],["bw","Bridgewater"]],
   "tableau-early": [["wwe","WWE"],["warner","Warner DCU"]],
   pbi:        [["aml","AML / OFAC"]],
@@ -485,22 +483,18 @@ const FIND_WHY = {
   "looker/hub": "Hub-and-spoke LookML.",
   "pipeline/pull": "Estate inventory. Not RLS.",
   "enable/iiq": "Who may open the tool.",
-  "semantic/hub": "Certified field. All tools hit it.",
-  "fit/map": "Role fit. Each row is a capability the employer may need."
+  "semantic/hub": "Certified field. All tools hit it."
 };
 const FIND_JD = "end-to-end data stack synapse databricks power bi semantic model fabric capacity memory refresh genie unity catalog metric views certified tables natural language conversational analytics self-service bookings demand revenue management operations commercial verified answers example sql instructions business glossary synonyms entity matching conversation api microsoft teams alerts sql python pyspark pandas dax time intelligence trend variance booking curve hospitality star schema snowflake dimensional modeling data contract analytics engineering layered models single source of truth row-level security column masking lineage tags ownership certification permissions ingest etl transformation analytical data platform woodland hills hybrid customer data identity prompt engineering financial accounting";
 const FIND_KEYS = {
   "arc/graph": "career graph timeline tenure be b.e bachelor engineering bs computer science madras university hover tooltip",
   "arc/walk": "walk timeline dell vale daimler yahoo",
   "arc/years": "yahoo years coe support",
-  "fit/map": "employer fit role alignment business intelligence data architect capability mapping " + FIND_JD,
-  "fit/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
   "pbi/aml": "aml ofac kyc sar edd bsa bank of hope fdic power bi python pyspark power query dataflows m language examiner audit pixel-perfect paginated report builder bursting power automate dax time intelligence trend variance false positive clearance velocity tabular editor xmla ssms partitions vertipaq oom fabric capacity calculation groups dax studio booking curve hospitality star schema",
   "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
   "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
   "looker/fin": "finance microstrategy mstr gl ap ar erp oracle module warehouse looker instance tax procurement revenue t&e uat accounting financial data",
   "semantic/hub": "semantic layer certified field contract looker tableau power bi chat unity catalog metric views single source of truth glossary descriptions synonyms genie bi data",
-  "fit/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold data ingestion",
   "looker/did": "looker admin modeler office hours platform coe bi",
   "enable/small": "small team coe scale bi",
   "enable/train": "train office hours workshop self-service data literacy prompt engineering coe",
@@ -679,32 +673,6 @@ const COPY = {
         </tbody>
       </table>
       ${say("Support is how a four-person COE covers an enterprise. Templates and training — not hero tickets.")}`
-  },
-  fit: {
-    map: () => `
-      <div class="hero"><h2>What the role may need. What I already run.</h2></div>
-      <table class="art">
-        <thead><tr><th>What the employer may need</th><th>I already do</th></tr></thead>
-        <tbody>
-          <tr><td>Ingest · Synapse / Databricks</td><td>Informatica, SQL, Python. Databricks medallion POC. I have not owned Synapse as the daily warehouse — I own the contract that comes out.</td></tr>
-          <tr><td>Star / snowflake + names</td><td>Business names, keys, relationships. Same discipline as BO universes then LookML then Power BI models.</td></tr>
-          <tr><td>Power BI on Fabric</td><td>Certified semantic models, reusable DAX, import vs live. Capacity: skinny model, incremental refresh — I have not run a Fabric tenant.</td></tr>
-          <tr><td>Booking curves · DAX</td><td>Sailing + cabin type + as-of date. Vs last year vs plan. Same muscle as clearance over time at the bank.</td></tr>
-          <tr><td>Genie · metric views</td><td>Certified tables only. Instructions, example SQL, verified answers. Review generated SQL. MCP is the loop I already run.</td></tr>
-          <tr><td>Unity Catalog</td><td>KPI once. Descriptions, glossary, synonyms. RLS and column masking apply to chat. Tags, owner, certified, lineage.</td></tr>
-          <tr><td>Teams / Conversation API</td><td>Chat in the flow of work — after permissions already hold. Same idea as MCP in the IDE for builders.</td></tr>
-          <tr><td>Finance / identity</td><td>GL-style models and exam packs. Access as a group. Row security. Customer data allowed, not just pretty.</td></tr>
-          <tr><td>Self-service + literacy</td><td>Office hours. How to ask. What the model cannot do. Prompt: name the business question, the date, the grain.</td></tr>
-        </tbody>
-      </table>
-      ${say("The warehouse can change. The contract does not: certify → let people build viz → then let them prompt.")}`,
-    pbi: () => `
-      <div class="hero"><h2>Power BI + Databricks is not a new language for me.</h2></div>
-      ${say("I already connected Power BI to a Databricks SQL warehouse on a lakehouse POC. Genie would sit on the same certified tables.")}
-      ${cards([
-        {h:"Power BI muscle", html:"<ul><li>Semantic models, star, calculation groups (Tabular Editor)</li><li>Power Query / M, Dataflows</li><li>DAX time intelligence, variance, OFAC MIS</li><li>XMLA + SSMS partitions when VertiPaq ran out of memory</li><li>Pixel-perfect paginated PDFs (Report Builder) + bursting</li></ul>"},
-        {h:"Databricks muscle", html:"<ul><li>Medallion POC from a legacy MySQL store</li><li>CTE-based SQL into Delta</li><li>SQL warehouse as the consumer for Power BI and Tableau</li><li>Genie = certified objects + instructions — same loop I run on MCP</li></ul>", p:true}
-      ])}`
   },
   foundation: {
     work: () => `
