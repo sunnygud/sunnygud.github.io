@@ -382,7 +382,7 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
   <button class="inst-btn" data-proj="foundation" data-skill="bw"><span class="dot"></span><span class="name">Bridgewater</span><span class="yrs">16–17</span></button>
   <button class="inst-btn" data-proj="tableau-early" data-skill="wwe"><span class="dot"></span><span class="name">WWE</span><span class="yrs">18</span></button>
   <button class="inst-btn" data-proj="tableau-early" data-skill="warner"><span class="dot"></span><span class="name">Warner DCU</span><span class="yrs">18–19</span></button>
-  <button class="inst-btn" data-proj="pbi" data-skill="aml"><span class="dot"></span><span class="name">Bank of Hope</span><span class="yrs">19–21</span></button>
+  <button class="inst-btn" data-proj="pbi" data-skill="aml"><span class="dot"></span><span class="name">Bank of Hope - AML</span><span class="yrs">19–21</span></button>
   <div class="section-label">2021–now · BI COE</div>
   <button class="inst-btn" data-proj="migrate" data-skill="onprem"><span class="dot"></span><span class="name">Migrate</span></button>
   <button class="inst-btn" data-proj="looker" data-skill="did"><span class="dot"></span><span class="name">Looker</span></button>
@@ -441,7 +441,7 @@ window.onerror = function (msg, src, line) {
 <script>
 const LABELS = {
   arc: "Timeline", foundation: "Foundation",
-  pbi: "AML · Power BI",
+  pbi: "Bank of Hope - AML",
   "tableau-early": "WWE · Warner DCU",
   migrate: "Migrate & 6 instances", looker: "Looker", tableau: "Tableau",
   enable: "Self-serve & train", semantic: "Semantic → viz → talk",
@@ -453,7 +453,7 @@ const TABS = {
   arc:        [["graph","Career graph"],["walk","The walk"],["years","Yahoo years"]],
   foundation: [["work","The path"],["bw","Bridgewater"]],
   "tableau-early": [["wwe","WWE"],["warner","Warner DCU"]],
-  pbi:        [["aml","AML / OFAC"]],
+  pbi:        [["aml","AML / OFAC"],["powerbi","Power BI + Databricks"]],
   migrate:    [["onprem","On-prem → cloud"],["six","Why six"]],
   looker:     [["did","What I did"],["fin","Finance instance"],["hub","Hub and spoke"],["rls","RLS & trees"],["viz","Users build viz"]],
   tableau:    [["did","What I did"],["gov","Governance"]],
@@ -475,6 +475,7 @@ const FIND_WHY = {
   "oracle/mods": "Fusion / Planning MCP. Same module names as Finance Looker.",
   "ai/skills": "Looker × Tableau revenue and close.",
   "pbi/aml": "AML / OFAC. Bank of Hope.",
+  "pbi/powerbi": "Power BI plus Databricks fit within the same Bank of Hope chapter.",
   "tableau/gov": "Finance also lives in Tableau. Same grain check.",
   "work/gws": "Google tools. Not Finance reporting.",
   "work/sec": "Security bugs on the org spine.",
@@ -491,6 +492,7 @@ const FIND_KEYS = {
   "arc/walk": "walk timeline dell vale daimler yahoo",
   "arc/years": "yahoo years coe support",
   "pbi/aml": "aml ofac kyc sar edd bsa bank of hope fdic power bi python pyspark power query dataflows m language examiner audit pixel-perfect paginated report builder bursting power automate dax time intelligence trend variance false positive clearance velocity tabular editor xmla ssms partitions vertipaq oom fabric capacity calculation groups dax studio booking curve hospitality star schema",
+  "pbi/powerbi": "power bi databricks semantic model dax medallion lakehouse sql warehouse certified tables",
   "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
   "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
   "looker/fin": "finance microstrategy mstr gl ap ar erp oracle module warehouse looker instance tax procurement revenue t&e uat accounting financial data",
@@ -652,7 +654,7 @@ const COPY = {
         <button type="button" data-go-p="foundation" data-go-s="bw"><div class="n">2016–17</div><b>Bridgewater</b><span>Westport. Grand Central metrics. Dot Collector Tableau — Principles 360, mock data first. Interworks left; Cognizant took it.</span></button>
         <button type="button" data-go-p="tableau-early" data-go-s="wwe"><div class="n">2018</div><b>WWE</b><span>Stamford. Tableau COE. Cognos stayed with the India team — I took requirements and moved the reports to Tableau.</span></button>
         <button type="button" data-go-p="tableau-early" data-go-s="warner"><div class="n">2018–19</div><b>Warner DCU</b><span>Churn, usage, campaign ROI in Tableau. Reported to Terrence Chui. Warehouse was moving Redshift → Snowflake — I specified the grain, I did not run Airflow.</span></button>
-        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Power BI · AML</b><span>Bank of Hope. OFAC / KYC / EDD. XMLA when refresh died. Pixel-perfect paginated packs for FDIC exams.</span></button>
+        <button type="button" data-go-p="pbi" data-go-s="aml"><div class="n">2019–21</div><b>Bank of Hope - AML</b><span>OFAC / KYC / EDD. XMLA when refresh died. Pixel-perfect paginated packs for FDIC exams.</span></button>
         <button type="button" data-go-p="migrate" data-go-s="onprem"><div class="n">2021–23</div><b>Migrate</b><span>On-prem → cloud. Disparate BI folded into six Looker instances by business need. Tableau Server → Cloud.</span></button>
         <button type="button" data-go-p="looker" data-go-s="hub"><div class="n">2023–25</div><b>Semantic + self-serve</b><span>One hub owns the semantic layer. Spokes remote-import it, then extend. Local KPIs live in the dependent repo. We ran this in production.</span></button>
         <button type="button" data-go-p="ai" data-go-s="skills"><div class="n">2025–26</div><b>How we use AI</b><span>Finance: revenue and close in hours, not weeks. Skills in git. MCP toward agentic — human still signs the number.</span></button>
@@ -759,6 +761,13 @@ const COPY = {
       ${cards([
         {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. Wrong entity mapping = double-count risk or miss the customer. I profiled locally, named the grain, then the certified model held it.</p>"},
         {h:"Same math a new employer needs", html:"<p>Clearance this week vs last year is the same shape as forward-looking demand versus last year or plan. Fabric capacity is the same problem as VertiPaq OOM at the bank: do not rebuild seven years every night.</p>", p:true}
+      ])}`,
+    powerbi: () => `
+      <div class="hero"><h2>Power BI + Databricks is not a new language for me.</h2></div>
+      ${say("The tools can change. The pattern does not: certified model first, then reusable reporting, then scale.")}
+      ${cards([
+        {h:"Power BI muscle", html:"<ul><li>Semantic models, star schema, reusable DAX</li><li>Power Query / M, Dataflows</li><li>XMLA + SSMS partitions when VertiPaq ran out of memory</li><li>Pixel-perfect paginated PDFs (Report Builder) + bursting</li></ul>"},
+        {h:"Databricks fit", html:"<ul><li>SQL warehouse / lakehouse as governed source</li><li>Medallion-style curation before BI hits the model</li><li>Certified tables before natural-language access</li><li>Same contract: explicit grain, named joins, reusable semantics</li></ul>", p:true}
       ])}`
   },
   migrate: {
