@@ -378,7 +378,7 @@ img.arch-img { width: 100%; max-width: 1040px; border: 1px solid var(--border); 
   </div>
   <div class="section-label">Career</div>
   <button class="inst-btn active" data-proj="arc" data-skill="graph"><span class="dot"></span><span class="name">Career graph</span></button>
-  <button class="inst-btn" data-proj="viking" data-skill="map"><span class="dot"></span><span class="name">Viking fit</span></button>
+  <button class="inst-btn" data-proj="fit" data-skill="map"><span class="dot"></span><span class="name">Employer fit</span></button>
   <button class="inst-btn" data-proj="foundation" data-skill="work"><span class="dot"></span><span class="name">Foundation</span><span class="yrs">03–16</span></button>
   <button class="inst-btn" data-proj="foundation" data-skill="bw"><span class="dot"></span><span class="name">Bridgewater</span><span class="yrs">16–17</span></button>
   <button class="inst-btn" data-proj="tableau-early" data-skill="wwe"><span class="dot"></span><span class="name">WWE</span><span class="yrs">18</span></button>
@@ -441,7 +441,7 @@ window.onerror = function (msg, src, line) {
 </script>
 <script>
 const LABELS = {
-  arc: "Timeline", viking: "Viking fit", foundation: "Foundation",
+  arc: "Timeline", fit: "Employer fit", foundation: "Foundation",
   pbi: "AML · Power BI",
   "tableau-early": "WWE · Warner DCU",
   migrate: "Migrate & 6 instances", looker: "Looker", tableau: "Tableau",
@@ -452,7 +452,7 @@ const LABELS = {
 };
 const TABS = {
   arc:        [["graph","Career graph"],["walk","The walk"],["years","Yahoo years"]],
-  viking:     [["map","The map"],["pbi","Power BI + Databricks"]],
+  fit:        [["map","The map"],["pbi","Power BI + Databricks"]],
   foundation: [["work","The path"],["bw","Bridgewater"]],
   "tableau-early": [["wwe","WWE"],["warner","Warner DCU"]],
   pbi:        [["aml","AML / OFAC"]],
@@ -486,21 +486,21 @@ const FIND_WHY = {
   "pipeline/pull": "Estate inventory. Not RLS.",
   "enable/iiq": "Who may open the tool.",
   "semantic/hub": "Certified field. All tools hit it.",
-  "viking/map": "Their posting. Each row is an ask from the JD."
+  "fit/map": "Role fit. Each row is a capability the employer may need."
 };
 const FIND_JD = "end-to-end data stack synapse databricks power bi semantic model fabric capacity memory refresh genie unity catalog metric views certified tables natural language conversational analytics self-service bookings demand revenue management operations commercial verified answers example sql instructions business glossary synonyms entity matching conversation api microsoft teams alerts sql python pyspark pandas dax time intelligence trend variance booking curve hospitality star schema snowflake dimensional modeling data contract analytics engineering layered models single source of truth row-level security column masking lineage tags ownership certification permissions ingest etl transformation analytical data platform woodland hills hybrid customer data identity prompt engineering financial accounting";
 const FIND_KEYS = {
   "arc/graph": "career graph timeline tenure be b.e bachelor engineering bs computer science madras university hover tooltip",
   "arc/walk": "walk timeline dell vale daimler yahoo",
   "arc/years": "yahoo years coe support",
-  "viking/map": "viking cruises sailing occupancy cabin architect jd senior bi data architect " + FIND_JD,
-  "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
+  "fit/map": "employer fit role alignment business intelligence data architect capability mapping " + FIND_JD,
+  "fit/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold",
   "pbi/aml": "aml ofac kyc sar edd bsa bank of hope fdic power bi python pyspark power query dataflows m language examiner audit pixel-perfect paginated report builder bursting power automate dax time intelligence trend variance false positive clearance velocity tabular editor xmla ssms partitions vertipaq oom fabric capacity calculation groups dax studio booking curve hospitality star schema",
   "looker/hub": "hub spoke remote import extends refinements lookml git star schema snowflake dimensional semantic model certified metric",
   "looker/rls": "rls row security org cost center workday iiq row-level security column masking unity catalog permissions",
   "looker/fin": "finance microstrategy mstr gl ap ar erp oracle module warehouse looker instance tax procurement revenue t&e uat accounting financial data",
   "semantic/hub": "semantic layer certified field contract looker tableau power bi chat unity catalog metric views single source of truth glossary descriptions synonyms genie bi data",
-  "viking/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold data ingestion",
+  "fit/pbi": "databricks genie power bi lakehouse fabric unity catalog semantic model dax pyspark pandas sql warehouse medallion bronze silver gold data ingestion",
   "looker/did": "looker admin modeler office hours platform coe bi",
   "enable/small": "small team coe scale bi",
   "enable/train": "train office hours workshop self-service data literacy prompt engineering coe",
@@ -680,11 +680,11 @@ const COPY = {
       </table>
       ${say("Support is how a four-person COE covers an enterprise. Templates and training — not hero tickets.")}`
   },
-  viking: {
+  fit: {
     map: () => `
-      <div class="hero"><h2>What you posted. What I already run.</h2></div>
+      <div class="hero"><h2>What the role may need. What I already run.</h2></div>
       <table class="art">
-        <thead><tr><th>Viking</th><th>I already do</th></tr></thead>
+        <thead><tr><th>What the employer may need</th><th>I already do</th></tr></thead>
         <tbody>
           <tr><td>Ingest · Synapse / Databricks</td><td>Informatica, SQL, Python. Databricks medallion POC. I have not owned Synapse as the daily warehouse — I own the contract that comes out.</td></tr>
           <tr><td>Star / snowflake + names</td><td>Business names, keys, relationships. Same discipline as BO universes then LookML then Power BI models.</td></tr>
@@ -694,10 +694,10 @@ const COPY = {
           <tr><td>Unity Catalog</td><td>KPI once. Descriptions, glossary, synonyms. RLS and column masking apply to chat. Tags, owner, certified, lineage.</td></tr>
           <tr><td>Teams / Conversation API</td><td>Chat in the flow of work — after permissions already hold. Same idea as MCP in the IDE for builders.</td></tr>
           <tr><td>Finance / identity</td><td>GL-style models and exam packs. Access as a group. Row security. Customer data allowed, not just pretty.</td></tr>
-          <tr><td>Self-service + literacy</td><td>Office hours. How to ask. What the model cannot do. Prompt: name the sailing, the date, the grain.</td></tr>
+          <tr><td>Self-service + literacy</td><td>Office hours. How to ask. What the model cannot do. Prompt: name the business question, the date, the grain.</td></tr>
         </tbody>
       </table>
-      ${say("Your warehouse is Databricks. The contract does not change: certify → let people build viz → then let them prompt.")}`,
+      ${say("The warehouse can change. The contract does not: certify → let people build viz → then let them prompt.")}`,
     pbi: () => `
       <div class="hero"><h2>Power BI + Databricks is not a new language for me.</h2></div>
       ${say("I already connected Power BI to a Databricks SQL warehouse on a lakehouse POC. Genie would sit on the same certified tables.")}
@@ -790,7 +790,7 @@ const COPY = {
       ])}
       ${cards([
         {h:"Profile → flags → entity", html:"<p>One person, many accounts, a DBA name, a wire that does not match CIP. Wrong entity mapping = double-count risk or miss the customer. I profiled locally, named the grain, then the certified model held it.</p>"},
-        {h:"Same math Viking needs", html:"<p>Clearance this week vs last year is the same shape as cabins sold 90 days out vs last year’s sailing. Fabric capacity at Viking is the same problem as VertiPaq OOM at the bank: do not rebuild seven years every night.</p>", p:true}
+        {h:"Same math a new employer needs", html:"<p>Clearance this week vs last year is the same shape as forward-looking demand versus last year or plan. Fabric capacity is the same problem as VertiPaq OOM at the bank: do not rebuild seven years every night.</p>", p:true}
       ])}`
   },
   migrate: {
@@ -1054,13 +1054,13 @@ const COPY = {
         <tbody>
           <tr><td>Looker / Tableau engineers shipping models</td><td>Skills they clone once. Finance revenue / consolidation check is the same library.</td></tr>
           <tr><td>A four-person COE, 20–30 teams</td><td>One chat ≈ one ticket. Office hours still happen. CTO work still ships. The agent does the paste, not the grain.</td></tr>
-          <tr><td>Finance / product asking in English</td><td>Chat only after the field is labeled. Same contract I already run on MCP — same one Viking wants on Genie.</td></tr>
+          <tr><td>Finance / product asking in English</td><td>Chat only after the field is labeled. Same contract I already run on MCP and would carry into any governed AI surface.</td></tr>
           <tr><td>A bill that does not become the project</td><td>Cheap model for Jira and Slack. Expensive model once, when two tools disagree.</td></tr>
         </tbody>
       </table>
       ${cards([
         {h:"What I do not pretend", html:"<p>I do not own their warehouse jobs. I bring the grain, sit in the review, and leave a skill so the next engineer is not waiting on me.</p>"},
-        {h:"What Viking feels", html:"<p>A BI architect who already works forward-deployed: embed with the team, certify the grain, then put AI on it. Not a dashboard shop. Not a prompt tourist.</p>", p:true}
+        {h:"What I could bring to the table", html:"<p>A BI architect who already works forward-deployed: embed with the team, certify the grain, then put AI on it. Not a dashboard shop. Not a prompt tourist.</p>", p:true}
       ])}`,
     skills: () => `
       <div class="hero"><h2>Finance lives in Looker and Tableau. The skill makes the two numbers one.</h2>
@@ -1106,7 +1106,7 @@ const COPY = {
       </table>
       ${cards([
         {h:"What I will not ship", html:"<ul><li>An agent that posts a revenue number with no human</li><li>SELECT * so the model can “explore”</li><li>A second copy of Finance skills per team</li></ul>"},
-        {h:"What Viking hears", html:"<p>Genie / agents on a certified layer is this path: procedure first, then chain, then a person. Not a chatbot on a warehouse dump.</p>", p:true}
+        {h:"What I would bring to an AI program", html:"<p>Genie / agents on a certified layer is this path: procedure first, then chain, then a person. Not a chatbot on a warehouse dump.</p>", p:true}
       ])}`,
     cost: () => `
       <div class="hero"><h2>Cheap for paste. Expensive only when the number can be wrong.</h2>
